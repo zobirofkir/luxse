@@ -2,6 +2,15 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {
+  HomeIcon,
+  InformationCircleIcon,
+  Cog6ToothIcon,
+  ShoppingBagIcon,
+  PhoneIcon,
+  ShoppingCartIcon,
+  CreditCardIcon,
+} from '@heroicons/react/24/outline'
+import {
   FaFacebookF,
   FaTwitter,
   FaLinkedinIn,
@@ -16,9 +25,18 @@ const socialMediaLinks = [
   { icon: <FaInstagram />, url: 'https://instagram.com' },
 ]
 
+const navItems = [
+  { name: 'Accueil', href: '/', icon: <HomeIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'À propos', href: '/about', icon: <InformationCircleIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'Services', href: '/services', icon: <Cog6ToothIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'Produits', href: '/products', icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'Contact', href: '/contact', icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'Panier', href: '/cart', icon: <ShoppingCartIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'Checkout', href: '/checkout', icon: <CreditCardIcon className="h-5 w-5 inline-block mr-2" /> },
+]
+
 const HeaderComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const navItems = ['Accueil', 'À propos', 'Services', 'Contact']
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
@@ -60,14 +78,15 @@ const HeaderComponent = () => {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex space-x-10">
-            {navItems.map((item) => (
+          <nav className="hidden md:flex space-x-8">
+            {navItems.map(({ name, href, icon }) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                className="text-white font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+                key={name}
+                href={href}
+                className="flex items-center text-white font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
               >
-                {item}
+                {icon}
+                {name}
               </a>
             ))}
           </nav>
@@ -99,14 +118,15 @@ const HeaderComponent = () => {
               aria-modal="true"
             >
               <nav className="flex flex-col space-y-8">
-                {navItems.map((item) => (
+                {navItems.map(({ name, href, icon }) => (
                   <a
-                    key={item}
-                    href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                    className="text-white text-xl font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+                    key={name}
+                    href={href}
+                    className="flex items-center text-white text-xl font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
                     onClick={() => setMenuOpen(false)}
                   >
-                    {item}
+                    {icon}
+                    {name}
                   </a>
                 ))}
               </nav>
