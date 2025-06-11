@@ -15,7 +15,7 @@ const socialMediaLinks = [
 ]
 
 const SocialBar = () => (
-  <div className="bg-black text-white text-sm py-1 border-b border-white/20">
+  <div className="bg-black text-white text-sm py-2 border-b border-white/20">
     <div className="max-w-7xl mx-auto flex justify-end space-x-6 px-6">
       {socialMediaLinks.map(({ icon, url }, idx) => (
         <Link
