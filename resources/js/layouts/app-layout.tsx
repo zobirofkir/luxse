@@ -1,3 +1,5 @@
+import FooterComponent from '@/components/FooterComponent';
+import HeaderComponent from '@/components/HeaderComponent';
 import { type ReactNode } from 'react';
 
 interface AppLayoutProps {
@@ -5,5 +7,27 @@ interface AppLayoutProps {
 }
 
 export default ({ children }: AppLayoutProps) => (
-    {children}
+    <>
+        {
+            /**
+             * Header Component
+             */
+        }
+        <HeaderComponent />
+
+        {
+            /**
+             * The pages
+             */
+        }
+
+        {children}
+
+        {
+            /**
+             * The Footer Component
+             */
+        }
+        <FooterComponent />
+    </>
 );
