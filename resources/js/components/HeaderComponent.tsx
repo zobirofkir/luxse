@@ -16,6 +16,7 @@ import {
   FaInstagram,
 } from 'react-icons/fa'
 import Logo from '@/assets/logo/logo.jpg'
+import { Link } from '@inertiajs/react'
 
 const socialMediaLinks = [
   { icon: <FaFacebookF />, url: 'https://facebook.com' },
@@ -45,7 +46,7 @@ const HeaderComponent = () => {
       <div className="bg-black text-white text-sm py-1 border-b border-white/20">
         <div className="max-w-7xl mx-auto flex justify-end space-x-6 px-6">
           {socialMediaLinks.map(({ icon, url }, idx) => (
-            <a
+            <Link
               key={idx}
               href={url}
               target="_blank"
@@ -55,7 +56,7 @@ const HeaderComponent = () => {
             >
               <span className="sr-only">{url.replace('https://', '')}</span>
               <div className="text-lg">{icon}</div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -67,25 +68,25 @@ const HeaderComponent = () => {
       <header className="sticky top-0 left-0 w-full z-[9999] bg-black bg-opacity-95 backdrop-blur-sm shadow-md border-b border-white/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo à gauche */}
-          <a href="/" className="flex items-center select-none">
+          <Link href="/" className="flex items-center select-none">
             <img
               src={Logo}
               alt="Logo Oudghti"
               className="h-15 w-15 rounded-full object-cover"
               draggable={false}
             />
-          </a>
+          </Link>
 
           {/* Menu principal centré (visible md+) */}
           <nav className="hidden md:flex space-x-10 font-semibold text-white text-lg select-none">
             {navItems.slice(0, 4).map(({ name, href }) => (
-              <a
+              <Link
                 key={name}
                 href={href}
                 className="hover:text-gray-400 transition-colors duration-300"
               >
                 {name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -120,7 +121,7 @@ const HeaderComponent = () => {
             >
               <nav className="flex flex-col space-y-8">
                 {navItems.map(({ name, href, icon }) => (
-                  <a
+                  <Link
                     key={name}
                     href={href}
                     className="flex items-center text-white text-xl font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
@@ -128,7 +129,7 @@ const HeaderComponent = () => {
                   >
                     {icon}
                     {name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </motion.aside>
