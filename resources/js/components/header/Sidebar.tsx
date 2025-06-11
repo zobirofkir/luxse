@@ -35,7 +35,7 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
           <Link
             key={name}
             href={href}
-            className="flex items-center text-white text-xl font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+            className="flex items-center text-white text-md font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
             onClick={() => setMenuOpen(false)}
           >
             {icon}

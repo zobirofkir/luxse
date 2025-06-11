@@ -27,7 +27,7 @@ const SocialBar = () => (
           aria-label={`Lien vers ${url.replace('https://', '')}`}
         >
           <span className="sr-only">{url.replace('https://', '')}</span>
-          <div className="text-lg">{icon}</div>
+          <div className="text-md">{icon}</div>
         </Link>
       ))}
     </div>
