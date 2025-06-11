@@ -7,6 +7,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
 } from 'react-icons/fa'
+import Logo from '@/assets/logo/logo.jpg';
 
 const socialMediaLinks = [
   { icon: <FaFacebookF />, url: 'https://facebook.com' },
@@ -50,7 +51,7 @@ const HeaderComponent = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo */}
           <div className="md:text-2xl text-xl font-extrabold text-white select-none tracking-wide">
-            OUDghiri
+            <img src={Logo} alt="Oudghti Logo" className='h-30 w-30 rounded-full'/>
           </div>
 
           {/* Navigation desktop */}
