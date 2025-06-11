@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import SocialBar from './header/SocialBar'
-import LogoComponent from './header/Logo'
-import NavBar from './header/NavBar'
-import BurgerMenuButton from './header/BurgerMenuButton'
-import Sidebar from './header/Sidebar'
+import SocialBar from './SocialBar'
+import LogoComponent from './Logo'
+import NavBar from './NavBar'
+import BurgerMenuButton from './BurgerMenuButton'
+import Sidebar from './Sidebar'
 
-const HeaderComponent = () => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
@@ -34,4 +34,4 @@ const HeaderComponent = () => {
   )
 }
 
-export default HeaderComponent
+export default Header
