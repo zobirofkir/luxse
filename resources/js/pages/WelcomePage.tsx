@@ -1,8 +1,11 @@
-import React from 'react'
+import { Head } from '@inertiajs/react'
 
 const WelcomePage = () => {
   return (
-    <div>WelcomePage</div>
+    <section>
+      <Head title='Accueil'/>
+      <h1 className='text-black dark-text-white'>Accueil</h1>
+    </section>
   )
 }
 
