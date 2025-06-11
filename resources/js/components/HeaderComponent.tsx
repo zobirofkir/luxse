@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {
-  HomeIcon,
-  InformationCircleIcon,
   Cog6ToothIcon,
   ShoppingBagIcon,
-  PhoneIcon,
   ShoppingCartIcon,
   CreditCardIcon,
+  InformationCircleIcon,
+  PhoneIcon,
 } from '@heroicons/react/24/outline'
 import {
   FaFacebookF,
@@ -26,13 +25,10 @@ const socialMediaLinks = [
 ]
 
 const navItems = [
-  { name: 'Accueil', href: '/', icon: <HomeIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'À propos', href: '/about', icon: <InformationCircleIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'Services', href: '/services', icon: <Cog6ToothIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'Produits', href: '/products', icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'Contact', href: '/contact', icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" /> },
-  { name: 'Panier', href: '/cart', icon: <ShoppingCartIcon className="h-5 w-5 inline-block mr-2" /> },
-  { name: 'Checkout', href: '/checkout', icon: <CreditCardIcon className="h-5 w-5 inline-block mr-2" /> },
 ]
 
 const HeaderComponent = () => {
@@ -40,9 +36,12 @@ const HeaderComponent = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
+  // Helper to detect if screen is md+ for sidebar animation direction
+  const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 768 : false
+
   return (
     <>
-      {/* Top social bar */}
+      {/* Barre sociale en haut */}
       <div className="bg-black text-white text-sm py-1 border-b border-white/20">
         <div className="max-w-7xl mx-auto flex justify-end space-x-6 px-6">
           {socialMediaLinks.map(({ icon, url }, idx) => (
@@ -61,41 +60,41 @@ const HeaderComponent = () => {
         </div>
       </div>
 
-      {/* Separator */}
+      {/* Séparateur */}
       <hr className="border-t border-white/30 mx-auto max-w-7xl" />
 
-      {/* Main header */}
+      {/* En-tête principal */}
       <header className="sticky top-0 left-0 w-full z-[9999] bg-black bg-opacity-95 backdrop-blur-sm shadow-md border-b border-white/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Logo */}
+          {/* Logo à gauche */}
           <a href="/" className="flex items-center select-none">
             <img
               src={Logo}
-              alt="Oudghti Logo"
+              alt="Logo Oudghti"
               className="h-15 w-15 rounded-full object-cover"
               draggable={false}
             />
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex space-x-8">
-            {navItems.map(({ name, href, icon }) => (
+          {/* Menu principal centré (visible md+) */}
+          <nav className="hidden md:flex space-x-10 font-semibold text-white text-lg select-none">
+            {navItems.slice(0, 4).map(({ name, href }) => (
               <a
                 key={name}
                 href={href}
-                className="flex items-center text-white font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+                className="hover:text-gray-400 transition-colors duration-300"
               >
-                {icon}
                 {name}
               </a>
             ))}
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Bouton burger à droite (visible md+) */}
           <button
             aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             onClick={toggleMenu}
-            className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-white rounded transition"
+            className="text-white focus:outline-none focus:ring-2 focus:ring-white rounded transition md:block"
+            style={{ zIndex: 10000 }}
           >
             {menuOpen ? (
               <XMarkIcon className="h-7 w-7" />
@@ -105,15 +104,17 @@ const HeaderComponent = () => {
           </button>
         </div>
 
-        {/* Mobile side menu */}
+        {/* Sidebar */}
         <AnimatePresence>
           {menuOpen && (
             <motion.aside
-              initial={{ x: '-100%' }}
+              initial={{ x: isDesktop ? '100%' : '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+              exit={{ x: isDesktop ? '100%' : '-100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-[4.5rem] left-0 z-40 h-screen w-64 bg-black shadow-xl p-8 md:hidden border-r border-white/20"
+              className={`fixed top-[4.5rem] ${
+                isDesktop ? 'right-0' : 'left-0'
+              } z-40 h-screen w-64 bg-black shadow-xl p-8 border-white/20 border-l md:border-l md:border-white/20 border-r md:border-r-0`}
               role="dialog"
               aria-modal="true"
             >
