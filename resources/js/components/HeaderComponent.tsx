@@ -42,6 +42,9 @@ const HeaderComponent = () => {
         </div>
       </div>
 
+      {/* White horizontal line between top header and main header */}
+      <hr className="border-t border-white/40 mx-auto max-w-7xl" />
+
       {/* Main header - sticky with backdrop blur */}
       <header className="sticky top-0 left-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm shadow-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
