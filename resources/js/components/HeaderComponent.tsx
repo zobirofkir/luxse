@@ -17,7 +17,6 @@ const socialMediaLinks = [
 
 const HeaderComponent = () => {
   const [menuOuvert, setMenuOuvert] = useState(false)
-
   const elementsNav = ['Accueil', 'À propos', 'Services', 'Contact']
 
   const basculerMenu = () => setMenuOuvert(!menuOuvert)
@@ -25,7 +24,7 @@ const HeaderComponent = () => {
   return (
     <>
       {/* Top header with social media */}
-      <div className="bg-black text-white text-sm py-1 border-b border-white">
+      <div className="bg-black text-white text-sm py-1 border-b border-white/20">
         <div className="max-w-7xl mx-auto flex justify-end space-x-6 px-6">
           {socialMediaLinks.map(({ icon, url }, idx) => (
             <a
@@ -33,7 +32,7 @@ const HeaderComponent = () => {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-300 transition-colors"
+              className="hover:text-gray-300 transition-colors duration-300"
               aria-label={`Lien vers ${url.replace('https://', '')}`}
             >
               <span className="sr-only">{url.replace('https://', '')}</span>
@@ -43,32 +42,32 @@ const HeaderComponent = () => {
         </div>
       </div>
 
-      {/* Main header */}
-      <header className="fixed top-[2.5rem] left-0 w-full z-50 bg-black shadow-md">
+      {/* Main header - sticky with backdrop blur */}
+      <header className="sticky top-0 left-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm shadow-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo */}
-          <div className="md:text-2xl text-xl font-extrabold text-white select-none">
+          <div className="md:text-2xl text-xl font-extrabold text-white select-none tracking-wide">
             OUDghiri
           </div>
 
           {/* Navigation desktop */}
-          <nav className="hidden md:flex space-x-10">
+          <nav className="hidden md:flex space-x-12">
             {elementsNav.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                className="text-white text-lg font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-white transition"
+                className="text-white text-lg font-semibold hover:text-indigo-400 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded transition-colors duration-300"
               >
                 {item}
               </a>
             ))}
           </nav>
 
-          {/* Bouton menu mobile */}
+          {/* Mobile menu button */}
           <button
             aria-label={menuOuvert ? 'Fermer le menu' : 'Ouvrir le menu'}
             onClick={basculerMenu}
-            className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-white rounded"
+            className="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded transition"
           >
             {menuOuvert ? (
               <XMarkIcon className="h-7 w-7" />
@@ -78,7 +77,7 @@ const HeaderComponent = () => {
           </button>
         </div>
 
-        {/* Menu latéral mobile */}
+        {/* Mobile side menu */}
         <AnimatePresence>
           {menuOuvert && (
             <motion.aside
@@ -86,7 +85,7 @@ const HeaderComponent = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-[2.5rem] left-0 z-40 h-full w-64 bg-black shadow-lg p-8 md:hidden"
+              className="fixed top-[4.5rem] left-0 z-40 h-full w-64 bg-black shadow-xl p-8 md:hidden border-r border-gray-800"
               role="dialog"
               aria-modal="true"
             >
@@ -95,7 +94,7 @@ const HeaderComponent = () => {
                   <a
                     key={item}
                     href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                    className="text-white text-xl font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-white transition"
+                    className="text-white text-xl font-semibold hover:text-indigo-400 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded transition-colors duration-300"
                     onClick={() => setMenuOuvert(false)}
                   >
                     {item}
