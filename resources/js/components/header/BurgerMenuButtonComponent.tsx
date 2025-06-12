@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { AnimatePresence, motion } from 'framer-motion'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
   const [language, setLanguage] = useState('fr')
@@ -20,37 +20,9 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
     },
   }
 
-  const FlagIcon = ({ lang }) => {
-    const flag = lang === 'fr' ? '🇫🇷' : '🇸🇦'
-    return (
-      <motion.span
-        key={lang}
-        className="text-xl"
-        initial={{ opacity: 0, rotate: -90, scale: 0.8 }}
-        animate={{ opacity: 1, rotate: 0, scale: 1 }}
-        exit={{ opacity: 0, rotate: 90, scale: 0.8 }}
-        transition={{ duration: 0.4 }}
-      >
-        {flag}
-      </motion.span>
-    )
-  }
-
   return (
     <div className="flex items-center gap-3" style={{ zIndex: 10000 }}>
-
-      {/* Language Switcher Button */}
-      <button
-        onClick={toggleLanguage}
-        aria-label="Change Language"
-        className="w-10 h-10 flex items-center justify-center rounded-full shadow-md border hover:shadow-lg transition bg-white"
-      >
-        <AnimatePresence mode="wait">
-          <FlagIcon key={language} lang={language} />
-        </AnimatePresence>
-      </button>
-
-      {/* Burger Menu Button */}
+      <LanguageSwitcher language={language} toggleLanguage={toggleLanguage} />
       <button
         aria-label={menuOpen ? translations[language].closeMenu : translations[language].openMenu}
         onClick={toggleMenu}
@@ -62,7 +34,6 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
           <Bars3Icon className="h-7 w-7" />
         )}
       </button>
-
     </div>
   )
 }
