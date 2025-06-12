@@ -3,7 +3,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
-  const [language, setLanguage] = useState('fr') // 'fr' or 'ar'
+  const [language, setLanguage] = useState('fr')
 
   const toggleLanguage = () => {
     setLanguage(prev => (prev === 'fr' ? 'ar' : 'fr'))
@@ -38,6 +38,18 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
 
   return (
     <div className="flex items-center gap-3" style={{ zIndex: 10000 }}>
+
+      {/* Language Switcher Button */}
+      <button
+        onClick={toggleLanguage}
+        aria-label="Change Language"
+        className="w-10 h-10 flex items-center justify-center rounded-full shadow-md border hover:shadow-lg transition bg-white"
+      >
+        <AnimatePresence mode="wait">
+          <FlagIcon key={language} lang={language} />
+        </AnimatePresence>
+      </button>
+
       {/* Burger Menu Button */}
       <button
         aria-label={menuOpen ? translations[language].closeMenu : translations[language].openMenu}
@@ -51,16 +63,6 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
         )}
       </button>
 
-      {/* Language Switcher Button */}
-      <button
-        onClick={toggleLanguage}
-        aria-label="Change Language"
-        className="w-10 h-10 flex items-center justify-center rounded-full shadow-md border hover:shadow-lg transition bg-white"
-      >
-        <AnimatePresence mode="wait">
-          <FlagIcon key={language} lang={language} />
-        </AnimatePresence>
-      </button>
     </div>
   )
 }
