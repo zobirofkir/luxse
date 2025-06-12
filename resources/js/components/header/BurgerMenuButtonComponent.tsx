@@ -5,7 +5,7 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => (
   <button
     aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
     onClick={toggleMenu}
-    className="text-white focus:outline-none focus:ring-2 focus:ring-white rounded transition md:block"
+    className="text-black focus:outline-none focus:ring-2 focus:ring-white rounded transition md:block"
     style={{ zIndex: 10000 }}
   >
     {menuOpen ? (

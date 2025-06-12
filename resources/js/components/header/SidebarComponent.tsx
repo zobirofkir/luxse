@@ -26,7 +26,7 @@ const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
       transition={{ type: 'tween', duration: 0.3 }}
       className={`fixed top-[4.5rem] ${
         isDesktop ? 'right-0' : 'left-0'
-      } z-40 h-screen w-64 bg-black shadow-xl p-8 border-white/20 border-l md:border-l md:border-white/20 border-r md:border-r-0`}
+      } z-40 h-screen md:w-64 w-full bg-white shadow-xl p-8 border-white/20 border-l md:border-l md:border-white/20 border-r md:border-r-0`}
       role="dialog"
       aria-modal="true"
     >
@@ -35,7 +35,7 @@ const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
           <Link
             key={name}
             href={href}
-            className="flex items-center text-white text-md font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+            className="flex items-center text-black text-md font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
             onClick={() => setMenuOpen(false)}
           >
             {icon}

@@ -9,7 +9,7 @@ const navItems = [
 ]
 
 const NavBarComponent = () => (
-  <nav className="hidden md:flex space-x-10 font-semibold text-white text-md select-none">
+  <nav className="hidden md:flex space-x-10 font-semibold text-black text-md select-none">
     {navItems.map(({ name, href }) => (
       <Link
         key={name}
