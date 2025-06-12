@@ -15,7 +15,7 @@ const navItems = [
   { name: 'Contact', href: '/contact', icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" /> },
 ]
 
-const Sidebar = ({ menuOpen, setMenuOpen }) => {
+const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
   const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 768 : false
 
   return (
@@ -47,4 +47,4 @@ const Sidebar = ({ menuOpen, setMenuOpen }) => {
   )
 }
 
-export default Sidebar
+export default SidebarComponent

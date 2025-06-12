@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from '@inertiajs/react'
 import Logo from '@/assets/logo/logo.jpg'
 
-const LogoComponent = () => (
+const LogoComponentComponent = () => (
   <Link href="/" className="flex items-center select-none">
     <img
       src={Logo}
@@ -13,4 +13,4 @@ const LogoComponent = () => (
   </Link>
 )
 
-export default LogoComponent
+export default LogoComponentComponent

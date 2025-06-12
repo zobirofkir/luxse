@@ -8,7 +8,7 @@ const navItems = [
   { name: 'Contact', href: '/contact' },
 ]
 
-const NavBar = () => (
+const NavBarComponent = () => (
   <nav className="hidden md:flex space-x-10 font-semibold text-white text-md select-none">
     {navItems.map(({ name, href }) => (
       <Link
@@ -22,4 +22,4 @@ const NavBar = () => (
   </nav>
 )
 
-export default NavBar
+export default NavBarComponent

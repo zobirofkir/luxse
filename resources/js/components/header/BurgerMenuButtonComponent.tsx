@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const BurgerMenuButton = ({ menuOpen, toggleMenu }) => (
+const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => (
   <button
     aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
     onClick={toggleMenu}
@@ -16,4 +16,4 @@ const BurgerMenuButton = ({ menuOpen, toggleMenu }) => (
   </button>
 )
 
-export default BurgerMenuButton
+export default BurgerMenuButtonComponent

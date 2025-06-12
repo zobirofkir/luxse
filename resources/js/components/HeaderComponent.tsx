@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import SocialBar from './header/SocialBar'
-import LogoComponent from './header/Logo'
-import NavBar from './header/NavBar'
-import BurgerMenuButton from './header/BurgerMenuButton'
-import Sidebar from './header/Sidebar'
+import SocialBarComponent from './header/SocialBarComponent'
+import LogoComponent from './header/LogoComponent'
+import NavBarComponent from './header/NavBarComponent'
+import BurgerMenuButtonComponent from './header/BurgerMenuButtonComponent'
+import SidebarComponent from './header/SidebarComponent'
 
 const HeaderComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -18,7 +18,7 @@ const HeaderComponent = () => {
        * Social Bar Component
        */
     }
-    <SocialBar />
+    <SocialBarComponent />
 
       <hr className="border-t border-white/30 mx-auto max-w-7xl" />
 
@@ -37,14 +37,14 @@ const HeaderComponent = () => {
              * Navigation Bar Component
              */
           }
-          <NavBar />
+          <NavBarComponent />
 
           {
             /**
              * Burger Menu Button Component
              */
           }
-          <BurgerMenuButton menuOpen={menuOpen} toggleMenu={toggleMenu} />
+          <BurgerMenuButtonComponent menuOpen={menuOpen} toggleMenu={toggleMenu} />
         </div>
         
         {
@@ -53,7 +53,7 @@ const HeaderComponent = () => {
            */
         }
         <AnimatePresence>
-          {menuOpen && <Sidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+          {menuOpen && <SidebarComponent menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
         </AnimatePresence>
       </header>
     </>
