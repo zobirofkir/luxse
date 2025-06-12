@@ -6,17 +6,17 @@ const slides = [
   {
     title: 'Timeless Elegance',
     subtitle: 'Crafted with precision and care.',
-    image: 'https://source.unsplash.com/featured/?diamond,ring',
+    image: 'https://t4.ftcdn.net/jpg/11/54/47/75/360_F_1154477568_0AQ6ccQGFevGn6op7H03nXyjrZjpoCJZ.jpg',
   },
   {
     title: 'Luxury Redefined',
     subtitle: 'Bespoke diamond creations.',
-    image: 'https://source.unsplash.com/featured/?luxury,diamond',
+    image: 'https://t3.ftcdn.net/jpg/11/98/78/90/360_F_1198789027_qUDh3zSjFjMG4EUNrDruwy5AxhwpNWyJ.jpg',
   },
   {
     title: 'Modern Sophistication',
     subtitle: 'Diamonds that speak volumes.',
-    image: 'https://source.unsplash.com/featured/?jewelry,diamond',
+    image: 'https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg',
   },
 ];
 
