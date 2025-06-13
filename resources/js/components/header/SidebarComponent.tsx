@@ -7,29 +7,37 @@ import {
   ShoppingBagIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline'
+import { TagIcon, UserCircleIcon } from 'lucide-react';
 
 const navItems = [
+  {
+    name: 'À propos',
+    href: '/about',
+    icon: <UserCircleIcon className="h-5 w-5 inline-block mr-2" />,
+  },
+  {
+    name: 'Catégories',
+    href: '/categories',
+    icon: <TagIcon className="h-5 w-5 inline-block mr-2" />,
+  },
   {
     name: 'Produits',
     href: '/products',
     icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" />,
   },
   {
-    name: 'FAQ',
-    href: '/faqs',
-    icon: <InformationCircleIcon className="h-5 w-5 inline-block mr-2" />,
-  },
-  {
     name: 'Contact',
     href: '/contact',
     icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" />,
   },
-]
+];
 
 const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
   const [isDesktop, setIsDesktop] = useState(false)
 
-  // Update isDesktop on mount and resize
+  /**
+   * Update isDesktop on mount and resize
+   */
   useEffect(() => {
     const checkScreen = () => setIsDesktop(window.innerWidth >= 768)
     checkScreen()

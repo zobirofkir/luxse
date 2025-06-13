@@ -26,7 +26,7 @@ const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
       <button
         aria-label={menuOpen ? translations[language].closeMenu : translations[language].openMenu}
         onClick={toggleMenu}
-        className="text-black focus:outline-none focus:ring-2 focus:ring-white rounded transition"
+        className="text-black lg:hidden focus:outline-none focus:ring-2 focus:ring-white rounded transition"
       >
         {menuOpen ? (
           <XMarkIcon className="h-7 w-7" />
