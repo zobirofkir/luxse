@@ -84,19 +84,29 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
             initial={{ x: -80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1.2 }}
-            className="space-y-6 text-center lg:text-left px-2 sm:px-0 max-w-lg"
+            className="space-y-6 text-center lg:text-left px-2 sm:px-0"
           >
-            <h3 className="text-3xl font-semibold uppercase text-black/90">
+            <h3 className="text-3xl font-semibold uppercase text-black/90 text-center">
               Élégance intemporelle
             </h3>
-            <p className="text-lg leading-relaxed text-gray-700">
+            <p className="text-lg leading-relaxed text-gray-700 text-center">
               Depuis des générations, notre maison façonne des bijoux
               d'exception mêlant tradition et modernité. Chaque diamant est
               sélectionné avec la plus grande exigence.
             </p>
-            <p className="text-lg leading-relaxed text-gray-700">
+            <p className="text-lg leading-relaxed text-gray-700 text-center">
               Nous croyons que chaque bijou doit raconter une histoire – votre
               histoire – avec éclat et raffinement.
+            </p>
+
+            <h3 className="text-3xl font-semibold uppercase text-black/90 text-center">
+              Second description
+            </h3>
+            <p className="text-lg leading-relaxed text-gray-700 text-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat aspernatur minima distinctio illum corrupti praesentium voluptate labore incidunt beatae nulla quibusdam, mollitia, deserunt fugit magnam suscipit neque sit ratione doloribus.
+            </p>
+            <p className="text-lg leading-relaxed text-gray-700 text-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia molestias adipisci labore, incidunt consequuntur debitis. Ad suscipit sapiente magni quia?
             </p>
           </motion.div>
 
@@ -115,72 +125,6 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
           </motion.div>
         </div>
 
-        {/* Big Description with toggle */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="max-w-4xl mx-auto text-center text-gray-800 text-lg leading-relaxed px-4 sm:px-0"
-        >
-          <p className={`transition-all duration-500 ease-in-out overflow-hidden${
-            showMore ? 'max-h-[1000px]' : 'max-h-[6rem]'
-          }`}>
-            {showMore ? fullDescription : shortDescription}
-          </p>
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="mt-4 text-gray-700 font-semibold hover:underline focus:outline-none"
-            aria-expanded={showMore}
-          >
-            {showMore ? 'Afficher moins' : 'Afficher plus'}
-          </button>
-        </motion.div>
-
-        {/* Values Section - stacked on mobile, grid on desktop */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-4 sm:px-0">
-          {[
-            {
-              title: 'Savoir-faire',
-              desc: 'Un héritage artisanal transmis avec passion.',
-            },
-            {
-              title: 'Pureté',
-              desc: 'Des diamants certifiés, d’une clarté exceptionnelle.',
-            },
-            {
-              title: 'Engagement',
-              desc: 'Une éthique respectueuse de l’humain et de la nature.',
-            },
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 + idx * 0.3 }}
-              className="border border-black py-8 px-6 rounded-xl bg-white/95 backdrop-blur-md shadow-md hover:shadow-xl hover:bg-black hover:text-white transition-all duration-300 cursor-pointer"
-            >
-              <h4 className="text-xl sm:text-2xl font-bold mb-3 uppercase tracking-wider">
-                {item.title}
-              </h4>
-              <p className="text-gray-700 text-sm sm:text-base hover:text-white">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="mt-16 sm:mt-24 text-center px-2 sm:px-0"
-        >
-          <p className="text-lg sm:text-xl font-semibold mb-4 max-w-md mx-auto">
-            Entrez dans l’univers exclusif de la haute joaillerie.
-          </p>
-          <button className="mt-4 px-10 py-4 uppercase border border-black font-semibold tracking-widest bg-white hover:bg-black hover:text-white transition-all duration-300 shadow-lg rounded-xl">
-            Découvrir nos créations
-          </button>
-        </motion.div>
       </div>
     </section>
   )
