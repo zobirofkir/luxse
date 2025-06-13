@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from '@inertiajs/react'
 
 const navItems = [
-  { name: 'À propos', href: '/about' },
+  { name: 'À propos', href: '/abouts' },
   { name: 'Categories', href: '/categories' },
   { name: 'Produits', href: '/products' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'FAQ', href: '/faqs' },
+  { name: 'Contact', href: '/contacts' },
 ]
 
 const NavBarComponent = () => (

@@ -1,10 +1,13 @@
+import AppLayout from '@/layouts/app-layout';
 import React from 'react';
 
 const ProductDetailPage = ({ id }) => {
   return (
-    <div>
-      Your product is {id}
-    </div>
+    <AppLayout>
+      <section>
+        Your product is {id}
+      </section>
+    </AppLayout>
   );
 };
 

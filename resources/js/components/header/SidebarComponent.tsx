@@ -8,11 +8,12 @@ import {
   PhoneIcon,
 } from '@heroicons/react/24/outline'
 import { TagIcon, UserCircleIcon } from 'lucide-react';
+import { FaQuestion } from 'react-icons/fa';
 
 const navItems = [
   {
     name: 'À propos',
-    href: '/about',
+    href: '/abouts',
     icon: <UserCircleIcon className="h-5 w-5 inline-block mr-2" />,
   },
   {
@@ -26,8 +27,13 @@ const navItems = [
     icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" />,
   },
   {
+    name: 'Faq',
+    href: '/faqs',
+    icon: <FaQuestion className="h-5 w-5 inline-block mr-2" />,
+  },
+  {
     name: 'Contact',
-    href: '/contact',
+    href: '/contacts',
     icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" />,
   },
 ];
