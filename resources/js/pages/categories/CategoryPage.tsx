@@ -1,8 +1,14 @@
+import CategoryComponent from '@/components/CategoryComponent'
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
 const CategoryPage = () => {
   return (
-    <div>CategoryPage</div>
+    <AppLayout>
+      <section>
+        <CategoryComponent />
+      </section>
+    </AppLayout>
   )
 }
 

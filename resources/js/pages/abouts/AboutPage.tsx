@@ -1,8 +1,14 @@
+import AboutComponent from '@/components/AboutComponent'
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
 const AboutPage = () => {
   return (
-    <div>AboutPage</div>
+    <AppLayout>
+      <section>
+        <AboutComponent />
+      </section>
+    </AppLayout>
   )
 }
 

@@ -1,8 +1,13 @@
-import React from 'react'
+import AppLayout from '@/layouts/app-layout'
+import ProductComponent from '@/components/ProductComponent'
 
 const ProductPage = () => {
   return (
-    <div>ProductPage</div>
+    <AppLayout>
+      <section>
+        <ProductComponent />
+      </section>
+    </AppLayout>
   )
 }
 

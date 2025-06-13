@@ -1,8 +1,13 @@
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
 const FaqPage = () => {
   return (
-    <div>FaqPage</div>
+    <AppLayout>
+      <section>
+        Questions
+      </section>
+    </AppLayout>
   )
 }
 

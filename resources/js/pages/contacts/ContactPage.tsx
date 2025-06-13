@@ -1,8 +1,14 @@
+import ContactComponent from '@/components/ContactComponent'
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
 const ContactPage = () => {
   return (
-    <div>ContactPage</div>
+    <AppLayout>
+      <section>
+        <ContactComponent />
+      </section>
+    </AppLayout>
   )
 }
 
