@@ -7,7 +7,7 @@ const LogoComponentComponent = () => (
     <img
       src={Logo}
       alt="Logo Oudghti"
-      className="h-15 w-15 rounded-full object-cover"
+      className="md:h-15 h-12 md:w-15 w-12 rounded-full object-cover"
       draggable={false}
     />
   </Link>
