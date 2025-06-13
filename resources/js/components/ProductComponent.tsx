@@ -61,7 +61,7 @@ const ProductComponent = () => {
               transition={{ duration: 0.8 }}
               className="text-4xl font-extrabold uppercase tracking-widest text-gray-800"
             >
-              Collection Prestige
+              Products
             </motion.h2>
           </div>
           <motion.p

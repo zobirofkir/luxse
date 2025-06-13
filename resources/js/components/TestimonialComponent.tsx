@@ -29,15 +29,35 @@ const testimonials = [
 ];
 
 const TestimonialComponent = () => {
-  const repeatedTestimonials = [...testimonials, ...testimonials]; // duplicate for infinite scroll
+  const repeatedTestimonials = [...testimonials, ...testimonials]; // pour scroll infini
 
   return (
     <section className="bg-white text-black py-20 px-4 sm:px-10">
-      <div className="mx-auto text-center max-w-7xl">
-        <h2 className="text-4xl font-black uppercase mb-16 tracking-widest">
-          Témoignages Clients
-        </h2>
+      <div className="container mx-auto">
+        {/* Titre section avec flesh gauche + sous-titre à droite */}
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-16">
+          <div className="flex items-center gap-4">
+            <div className="w-1 h-12 bg-rose-500 rounded-full"></div>
+            <motion.h2
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl font-extrabold uppercase tracking-widest text-gray-800"
+            >
+              Témoignages Clients
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-gray-500 text-sm sm:text-base italic mt-4 sm:mt-0 text-center sm:text-right"
+          >
+            Ce que nos clients disent de nous...
+          </motion.p>
+        </div>
 
+        {/* Scroll horizontal automatique */}
         <div
           className="relative overflow-x-hidden"
           onMouseEnter={(e) => {
@@ -52,7 +72,7 @@ const TestimonialComponent = () => {
           <div
             className="scroll-container flex gap-6 w-max no-scrollbar"
             style={{
-              animation: "scroll 40s linear infinite",
+              animation: "scroll 60s linear infinite",
             }}
           >
             {repeatedTestimonials.map((testimonial, idx) => (
@@ -61,6 +81,7 @@ const TestimonialComponent = () => {
                 className="min-w-[300px] max-w-sm bg-white text-black rounded-3xl p-6 flex-shrink-0 shadow-xl border border-gray-200 relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
                 <div className="absolute inset-0 rounded-3xl shadow-[0_0_40px_0_rgba(255,255,255,0.6)] z-[-1]" />
@@ -81,6 +102,7 @@ const TestimonialComponent = () => {
         </div>
       </div>
 
+      {/* Animation CSS personnalisée */}
       <style jsx>{`
         @keyframes scroll {
           0% {
