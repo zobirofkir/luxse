@@ -7,3 +7,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.perspective {
+  perspective: 1200px;
+}
