@@ -4,7 +4,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const ContactComponent = () => {
   return (
-    <section className="bg-white text-black py-16 px-6 max-w-4xl mx-auto rounded-lg shadow-md">
+    <section className="bg-white text-black py-16 px-6 max-w-7xl mx-auto rounded-lg shadow-md">
       <h2 className="text-3xl font-bold mb-8 text-center">Contactez-Nous</h2>
 
       {/* Map */}

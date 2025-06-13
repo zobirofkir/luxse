@@ -35,7 +35,7 @@ const TestimonialComponent = () => {
 
   return (
     <section className="bg-white text-black py-10 px-4 sm:px-8">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-full container mx-auto text-center">
         <h2 className="text-4xl font-black uppercase mb-16 tracking-widest">
           Témoignages Clients
         </h2>

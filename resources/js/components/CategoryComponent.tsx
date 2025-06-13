@@ -31,7 +31,7 @@ const CategoryComponent = () => {
 
   return (
     <section className="bg-white text-black py-10 px-4 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-full container mx-auto">
         <h2 className="text-4xl font-black uppercase text-center mb-16 tracking-widest">
           Nos Catégories
         </h2>
