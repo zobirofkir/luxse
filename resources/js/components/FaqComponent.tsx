@@ -66,7 +66,7 @@ const faqs = [
 ]
 
 const FaqItem = ({ faq, isOpen, onClick }) => (
-  <div className="border-b border-gray-300 py-4">
+  <div className="border-b border-gray-300 py-4 container mx-auto">
     <button
       onClick={onClick}
       className="flex justify-between items-center w-full text-left text-lg sm:text-xl font-semibold text-gray-800 hover:text-black transition-colors"
