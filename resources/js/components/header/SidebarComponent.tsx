@@ -9,9 +9,8 @@ import {
 } from '@heroicons/react/24/outline'
 
 const navItems = [
-  { name: 'À propos', href: '/about', icon: <InformationCircleIcon className="h-5 w-5 inline-block mr-2" /> },
-  { name: 'Categories', href: '/Categories', icon: <Cog6ToothIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'Produits', href: '/products', icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" /> },
+  { name: 'FAQ', href: '/faqs', icon: <ShoppingBagIcon className="h-5 w-5 inline-block mr-2" /> },
   { name: 'Contact', href: '/contact', icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" /> },
 ]
 

@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react'
 
 const navItems = [
   { name: 'À propos', href: '/about' },
-  { name: 'Services', href: '/services' },
+  { name: 'Categories', href: '/categories' },
   { name: 'Produits', href: '/products' },
   { name: 'Contact', href: '/contact' },
 ]

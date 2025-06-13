@@ -1,3 +1,5 @@
+import React from "react";
+
 const VideoComponent = () => {
   return (
     <section className="bg-white text-black py-24">
@@ -6,9 +8,9 @@ const VideoComponent = () => {
           Découvrez Notre Artisanat
         </h2>
 
-        <div className="relative overflow-hidden rounded-3xl shadow-lg border border-black mx-auto max-w-full aspect-video">
+        <div className="relative overflow-hidden rounded-3xl shadow-lg border border-black mx-auto max-w-full max-h-[80%] aspect-video">
           <iframe
-            className="w-full h-[80%] rounded-3xl"
+            className="w-full h-full rounded-3xl"
             src="https://www.youtube.com/embed/kYOP52BUZTI"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
