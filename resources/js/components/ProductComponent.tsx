@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const products = [
+const produits = [
   {
     id: 1,
     name: "Bague Éclat Suprême",
@@ -40,7 +40,7 @@ const products = [
   },
 ];
 
-const ProductComponent = () => {
+const ComposantProduits = () => {
   return (
     <section className="bg-white text-black py-24 px-4 sm:px-8">
       <div className="max-w-7xl mx-auto">
@@ -54,9 +54,9 @@ const ProductComponent = () => {
         </motion.h2>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product, index) => (
+          {produits.map((produit, index) => (
             <motion.div
-              key={product.id}
+              key={produit.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -65,16 +65,16 @@ const ProductComponent = () => {
             >
               <div className="w-full h-80 overflow-hidden">
                 <img
-                  src={product.image + "?sig=" + product.id}
-                  alt={product.name}
+                  src={produit.image + "?sig=" + produit.id}
+                  alt={produit.name}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6 flex flex-col gap-2">
                 <h3 className="text-lg sm:text-xl font-semibold uppercase tracking-wider">
-                  {product.name}
+                  {produit.name}
                 </h3>
-                <p className="text-base sm:text-lg font-medium">{product.price}</p>
+                <p className="text-base sm:text-lg font-medium">{produit.price}</p>
                 <button className="mt-4 w-fit px-6 py-2 border border-black uppercase text-xs sm:text-sm font-semibold tracking-widest hover:bg-black hover:text-white transition-all duration-300">
                   Ajouter au panier
                 </button>
@@ -87,4 +87,4 @@ const ProductComponent = () => {
   );
 };
 
-export default ProductComponent;
+export default ComposantProduits;
