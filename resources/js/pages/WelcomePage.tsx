@@ -1,5 +1,5 @@
 import AboutComponent from '@/components/AboutComponent'
-import CallToActionComponent from '@/components/CallToActionComponent'
+import ContactComponent from '@/components/ContactComponent'
 import CategoryComponent from '@/components/CategoryComponent'
 import ProductComponent from '@/components/ProductComponent'
 import SliderComponent from '@/components/SliderComponent'
@@ -25,7 +25,7 @@ const WelcomePage = () => {
 
       <VideoComponent />
 
-      <CallToActionComponent />
+      <ContactComponent />
 
     </AppLayout>
   )

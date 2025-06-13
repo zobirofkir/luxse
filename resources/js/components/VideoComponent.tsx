@@ -8,7 +8,7 @@ const VideoComponent = () => {
 
         <div className="relative overflow-hidden rounded-3xl shadow-lg border border-black mx-auto max-w-full aspect-video">
           <iframe
-            className="w-full h-full rounded-3xl"
+            className="w-full h-[80%] rounded-3xl"
             src="https://www.youtube.com/embed/kYOP52BUZTI"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
