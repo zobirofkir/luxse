@@ -6,6 +6,7 @@ const VideoComponent = () => {
     <section className="bg-white text-black py-24 px-4 sm:px-10">
       <div className="mx-auto">
         {/* Titre et sous-titre avec flesh */}
+
         {/* <div className="flex flex-col sm:flex-row justify-between items-center mb-16 container">
           <div className="flex items-center gap-4 mb-4 sm:mb-0">
             <div className="w-1 h-12 bg-rose-500 rounded-full"></div>
@@ -17,7 +18,7 @@ const VideoComponent = () => {
             >
               Découvrez Notre Artisanat
             </motion.h2>
-          </div> */}
+          </div>
 
           <motion.p
             initial={{ opacity: 0, x: 30 }}
@@ -27,7 +28,7 @@ const VideoComponent = () => {
           >
             Un regard immersif dans la création de nos bijoux
           </motion.p>
-        </div>
+        </div> */}
 
         {/* Vidéo responsive */}
         <motion.div
