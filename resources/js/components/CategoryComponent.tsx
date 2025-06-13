@@ -20,6 +20,24 @@ const categories = [
     description: "Bracelets en or et diamants, parfaits pour toutes les occasions.",
     image: "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
   },
+    {
+    id: 4,
+    name: "Bagues",
+    description: "Découvrez notre sélection de bagues en diamant intemporelles.",
+    image: "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
+  },
+  {
+    id: 5,
+    name: "Colliers",
+    description: "Des colliers raffinés pour sublimer votre élégance.",
+    image: "https://t4.ftcdn.net/jpg/11/54/47/75/360_F_1154477568_0AQ6ccQGFevGn6op7H03nXyjrZjpoCJZ.jpg",
+  },
+  {
+    id: 6,
+    name: "Bracelets",
+    description: "Bracelets en or et diamants, parfaits pour toutes les occasions.",
+    image: "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
+  },
 ];
 
 const CategoryComponent = () => {

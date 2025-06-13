@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -20,67 +20,80 @@ const testimonials = [
     text: "Le service personnalisé et la rapidité de livraison m’ont vraiment impressionnée. Bijoux exquis !",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
   },
+  {
+    id: 4,
+    name: "Julien Lefèvre",
+    text: "Des pièces élégantes et intemporelles, parfaites pour offrir ou se faire plaisir. Bravo !",
+    image: "https://randomuser.me/api/portraits/men/31.jpg",
+  },
 ];
 
 const TestimonialComponent = () => {
-  const [index, setIndex] = useState(0);
-
-  const nextTestimonial = () => {
-    setIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const repeatedTestimonials = [...testimonials, ...testimonials]; // duplicate for infinite scroll
 
   return (
-    <section className="bg-white text-black py-10 px-4 sm:px-8">
-      <div className="max-w-full container mx-auto text-center">
+    <section className="bg-white text-black py-20 px-4 sm:px-10">
+      <div className="mx-auto text-center max-w-7xl">
         <h2 className="text-4xl font-black uppercase mb-16 tracking-widest">
           Témoignages Clients
         </h2>
 
-        <div className="relative overflow-hidden">
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={testimonials[index].id}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="p-8 bg-black text-white rounded-3xl shadow-lg"
-            >
-              <img
-                src={testimonials[index].image}
-                alt={testimonials[index].name}
-                className="w-20 h-20 rounded-full mx-auto mb-6 object-cover border-2 border-white"
-              />
-              <p className="italic text-lg mb-6">"{testimonials[index].text}"</p>
-              <h3 className="font-bold uppercase tracking-wide">
-                {testimonials[index].name}
-              </h3>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Controls */}
-          <div className="flex justify-between mt-8 max-w-xs mx-auto">
-            <button
-              onClick={prevTestimonial}
-              className="px-4 py-2 border border-black rounded uppercase text-xs font-semibold tracking-wide hover:bg-black hover:text-white transition"
-              aria-label="Précédent"
-            >
-              Précédent
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="px-4 py-2 border border-black rounded uppercase text-xs font-semibold tracking-wide hover:bg-black hover:text-white transition"
-              aria-label="Suivant"
-            >
-              Suivant
-            </button>
+        <div
+          className="relative overflow-x-hidden"
+          onMouseEnter={(e) => {
+            e.currentTarget.querySelector(".scroll-container").style.animationPlayState =
+              "paused";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.querySelector(".scroll-container").style.animationPlayState =
+              "running";
+          }}
+        >
+          <div
+            className="scroll-container flex gap-6 w-max no-scrollbar"
+            style={{
+              animation: "scroll 40s linear infinite",
+            }}
+          >
+            {repeatedTestimonials.map((testimonial, idx) => (
+              <motion.div
+                key={idx}
+                className="min-w-[300px] max-w-sm bg-white text-black rounded-3xl p-6 flex-shrink-0 shadow-xl border border-gray-200 relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="absolute inset-0 rounded-3xl shadow-[0_0_40px_0_rgba(255,255,255,0.6)] z-[-1]" />
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white shadow-md"
+                />
+                <p className="italic text-base mb-4 whitespace-normal break-words">
+                  "{testimonial.text}"
+                </p>
+                <h3 className="font-semibold uppercase tracking-wide">
+                  {testimonial.name}
+                </h3>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 };

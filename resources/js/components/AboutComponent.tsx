@@ -5,7 +5,7 @@ import { Stars, OrbitControls } from '@react-three/drei'
 
 const AboutComponent = () => {
   return (
-    <section className="relative text-black py-32 px-6 overflow-hidden container mx-auto">
+    <section className="relative text-black py-32 px-6 overflow-hidden container mx-auto h-full">
       {/* Three.js Space Background */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5], fov: 70 }}>
