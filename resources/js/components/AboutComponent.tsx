@@ -1,22 +1,62 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Canvas } from '@react-three/fiber'
-import { Stars, OrbitControls } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { OrbitControls, useGLTF } from '@react-three/drei'
+
+// Custom Diamond Mesh with rotation animation
+function Diamond() {
+  const meshRef = useRef()
+
+  // Rotate diamond continuously
+  useFrame(({ clock }) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = clock.getElapsedTime() * 0.8
+      meshRef.current.rotation.x = Math.sin(clock.getElapsedTime()) * 0.2
+    }
+  })
+
+  // Geometry for diamond: using an octahedron (diamond-like shape)
+  return (
+    <mesh ref={meshRef} scale={2.5}>
+      <octahedronGeometry args={[1, 0]} />
+      <meshPhysicalMaterial
+        color="#d4d4d8"
+        roughness={0.1}
+        metalness={1}
+        clearcoat={1}
+        clearcoatRoughness={0}
+        reflectivity={1}
+        transmission={1} // glass effect
+        thickness={2}
+        envMapIntensity={2}
+        ior={2.4}
+        specularIntensity={1}
+        opacity={0.8}
+        transparent
+      />
+    </mesh>
+  )
+}
 
 const AboutComponent = () => {
   return (
-    <section className="relative text-black py-32 px-6 overflow-hidden container mx-auto h-full">
-      {/* Three.js Space Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 70 }}>
+    <section className="relative text-black py-32 px-6 overflow-hidden container mx-auto min-h-[700px] flex items-center justify-center">
+      {/* Three.js Diamond Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Canvas
+          camera={{ position: [0, 0, 6], fov: 50 }}
+          gl={{ antialias: true, alpha: true }}
+          style={{ height: '100%', width: '100%' }}
+        >
           <ambientLight intensity={0.5} />
-          <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
+          <directionalLight position={[5, 5, 5]} intensity={1} />
+          <Diamond />
           <OrbitControls enableZoom={false} enableRotate={false} />
         </Canvas>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-full mx-auto bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-gray-300">
+      {/* Content container */}
+      <div className="relative z-10 max-w-7xl w-full bg-white/90 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-gray-300">
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: -40 }}
@@ -83,12 +123,12 @@ const AboutComponent = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 + idx * 0.2 }}
-              className="border border-black py-10 px-6 rounded-xl bg-white/90 backdrop-blur-md shadow-md hover:shadow-xl hover:bg-black hover:text-white transition-all duration-300"
+              className="border border-black py-10 px-6 rounded-xl bg-white/90 backdrop-blur-md shadow-md hover:shadow-xl hover:bg-black hover:text-white transition-all duration-300 cursor-pointer"
             >
               <h4 className="text-2xl font-bold mb-3 uppercase tracking-wider">
                 {item.title}
               </h4>
-              <p className="text-gray-700 dark:text-gray-300 text-base">{item.desc}</p>
+              <p className="text-gray-700 text-base">{item.desc}</p>
             </motion.div>
           ))}
         </div>
