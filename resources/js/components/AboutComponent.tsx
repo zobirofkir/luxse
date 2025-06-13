@@ -99,15 +99,6 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
               histoire – avec éclat et raffinement.
             </p>
 
-            <h3 className="text-3xl font-semibold uppercase text-black/90 text-center">
-              Second description
-            </h3>
-            <p className="text-lg leading-relaxed text-gray-700 text-center">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat aspernatur minima distinctio illum corrupti praesentium voluptate labore incidunt beatae nulla quibusdam, mollitia, deserunt fugit magnam suscipit neque sit ratione doloribus.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-700 text-center">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia molestias adipisci labore, incidunt consequuntur debitis. Ad suscipit sapiente magni quia?
-            </p>
           </motion.div>
 
           {/* Image */}
