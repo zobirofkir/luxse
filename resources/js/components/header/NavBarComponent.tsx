@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from '@inertiajs/react'
 
 const navItems = [
+  { name: 'Accueil', href: '/' },
   { name: 'À propos', href: '/abouts' },
   { name: 'Categories', href: '/categories' },
   { name: 'Produits', href: '/products' },

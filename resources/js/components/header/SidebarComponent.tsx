@@ -6,11 +6,17 @@ import {
   Cog6ToothIcon,
   ShoppingBagIcon,
   PhoneIcon,
+  HomeIcon,
 } from '@heroicons/react/24/outline'
 import { TagIcon, UserCircleIcon } from 'lucide-react';
 import { FaQuestion } from 'react-icons/fa';
 
 const navItems = [
+  {
+    name: 'Accueil',
+    href: '/',
+    icon: <HomeIcon className="h-5 w-5 inline-block mr-2" />,
+  },
   {
     name: 'À propos',
     href: '/abouts',
