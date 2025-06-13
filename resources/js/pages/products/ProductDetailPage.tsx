@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const ProductDetailPage = ({$id}) => {
+const ProductDetailPage = ({ id }) => {
   return (
     <div>
-        {$id}
+      Your product is {id}
     </div>
-  )
-}
+  );
+};
 
-export default ProductDetailPage
+export default ProductDetailPage;
