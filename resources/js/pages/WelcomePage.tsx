@@ -1,4 +1,5 @@
 import AboutComponent from '@/components/AboutComponent'
+import CategoryComponent from '@/components/CategoryComponent'
 import ProductComponent from '@/components/ProductComponent'
 import SliderComponent from '@/components/SliderComponent'
 import AppLayout from '@/layouts/app-layout'
@@ -14,6 +15,8 @@ const WelcomePage = () => {
       <AboutComponent />
 
       <ProductComponent />
+
+      <CategoryComponent />
 
     </AppLayout>
   )
