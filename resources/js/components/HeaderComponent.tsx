@@ -48,7 +48,7 @@ const HeaderComponent = () => {
             transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="sticky top-0 left-0 w-full z-[9999] bg-white bg-opacity-95 backdrop-blur-sm shadow-md border-b border-white/10"
           >
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
               <LogoComponent />
               <NavBarComponent />
               <BurgerMenuButtonComponent menuOpen={menuOpen} toggleMenu={toggleMenu} />
