@@ -29,10 +29,10 @@ const testimonials = [
 ];
 
 const TestimonialComponent = () => {
-  const repeatedTestimonials = [...testimonials, ...testimonials]; // pour scroll infini
+  const repeatedTestimonials = [...testimonials, ...testimonials]; 
 
   return (
-    <section className="bg-white text-black py-20 px-4 sm:px-10">
+    <section className="bg-white text-black pb-10 px-4 sm:px-10">
       <div className="container mx-auto">
         {/* Titre section avec flesh gauche + sous-titre à droite */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-16">

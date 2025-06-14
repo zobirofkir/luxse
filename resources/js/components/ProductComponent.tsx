@@ -49,7 +49,7 @@ const produits = [
 
 const ProductComponent = () => {
   return (
-    <section className="bg-white text-black py-16 px-4 sm:px-8">
+    <section className="bg-white text-black pb-10 px-4 sm:px-8">
       <div className="container mx-auto">
         {/* Titre avec ligne à gauche et sous-titre à droite */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-16">

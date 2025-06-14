@@ -47,7 +47,7 @@ const AboutComponent = () => {
 Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. Suspendisse potenti. Fusce vitae posuere nunc, sed porttitor sapien. Vivamus et velit ultricies, pretium metus id, facilisis lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis nec justo cursus, blandit metus a, blandit lectus.`
 
   return (
-    <section className="relative text-black py-20 px-4 sm:px-6 md:px-10 overflow-hidden container mx-auto min-h-[700px] flex items-center justify-center">
+    <section className="relative text-black py-10 px-4 sm:px-6 md:px-10 overflow-hidden container mx-auto min-h-[700px] flex items-center justify-center">
       {/* Diamond Background - hidden on small screens for clarity and perf */}
       <div className="absolute inset-0 z-0 pointer-events-none hidden sm:block">
         <Canvas
