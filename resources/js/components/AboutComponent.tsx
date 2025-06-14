@@ -89,12 +89,12 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
             <h3 className="text-3xl font-semibold uppercase text-black/90 text-center">
               Élégance intemporelle
             </h3>
-            <p className="text-lg leading-relaxed text-gray-700 text-center">
+            <p className="text-lg leading-relaxed text-gray-700 text-center text-xl">
               Depuis des générations, notre maison façonne des bijoux
               d'exception mêlant tradition et modernité. Chaque diamant est
               sélectionné avec la plus grande exigence.
             </p>
-            <p className="text-lg leading-relaxed text-gray-700 text-center">
+            <p className="text-lg leading-relaxed text-gray-700 text-center text-xl">
               Nous croyons que chaque bijou doit raconter une histoire – votre
               histoire – avec éclat et raffinement.
             </p>

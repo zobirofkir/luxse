@@ -6,16 +6,19 @@ import { FaWhatsapp } from 'react-icons/fa';
 const ContactComponent = () => {
   return (
     <section className="bg-white text-black py-20 px-6 sm:px-10 max-w-7xl mx-auto">
-      {/* Titre */}
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl sm:text-5xl font-extrabold uppercase tracking-widest text-center mb-14 relative"
-      >
-        Contactez-Nous
-        <span className="block w-24 h-1 bg-rose-500 mx-auto mt-2 rounded-full"></span>
-      </motion.h2>
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-16">
+        <div className="flex items-center gap-4">
+          <div className="w-1 h-12 bg-rose-500 rounded-full"></div>
+          <motion.h2
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-extrabold uppercase tracking-widest text-gray-800"
+          >
+            Contactez-Nous
+          </motion.h2>
+        </div>
+      </div>
 
       {/* Carte */}
       <div className="mb-12 rounded-3xl overflow-hidden shadow-md border border-gray-200">

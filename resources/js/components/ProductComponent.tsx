@@ -100,7 +100,7 @@ const ProductComponent = () => {
                   <h3 className="text-lg sm:text-xl font-semibold uppercase tracking-wider">
                     {produit.name}
                   </h3>
-                  <p className="text-base sm:text-lg font-medium text-gray-800">
+                  <p className="text-base sm:text-lg font-medium text-gray-800 text-xl">
                     {produit.price}
                   </p>
                   <button

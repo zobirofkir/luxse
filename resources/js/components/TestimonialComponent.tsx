@@ -51,7 +51,7 @@ const TestimonialComponent = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-gray-500 text-sm sm:text-base italic mt-4 sm:mt-0 text-center sm:text-right"
+            className="text-gray-500 text-xl italic mt-4 sm:mt-0 text-center sm:text-right"
           >
             Ce que nos clients disent de nous...
           </motion.p>
