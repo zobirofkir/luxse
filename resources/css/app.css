@@ -1,11 +1,17 @@
 @import 'tailwindcss';
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
 @plugin 'tailwindcss-animate';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
+
+body {
+  font-family: "Cormorant Garamond", serif;
+}
 
 .perspective {
   perspective: 1000px;
