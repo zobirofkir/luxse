@@ -6,17 +6,17 @@ const slides = [
   {
     title: 'Timeless Elegance',
     subtitle: 'Crafted with precision and care.',
-    image: 'https://t4.ftcdn.net/jpg/11/54/47/75/360_F_1154477568_0AQ6ccQGFevGn6op7H03nXyjrZjpoCJZ.jpg',
+    image: 'https://t3.ftcdn.net/jpg/14/69/20/52/360_F_1469205285_a6PLxvTKqrOUZ2do8kYrkiALKrzvMdOA.jpg',
   },
   {
     title: 'Luxury Redefined',
     subtitle: 'Bespoke diamond creations.',
-    image: 'https://t3.ftcdn.net/jpg/11/98/78/90/360_F_1198789027_qUDh3zSjFjMG4EUNrDruwy5AxhwpNWyJ.jpg',
+    image: 'https://www.goldsmithjewelersohio.com/wp-content/uploads/2022/12/Loose-Diamond-16-1080x675.png',
   },
   {
     title: 'Modern Sophistication',
     subtitle: 'Diamonds that speak volumes.',
-    image: 'https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg',
+    image: 'https://www.casadoro.com/wp-content/uploads/2021/09/AdobeStock_272687719-1080x675.jpeg',
   },
 ];
 
