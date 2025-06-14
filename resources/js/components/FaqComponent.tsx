@@ -105,13 +105,15 @@ const FaqComponent = () => {
 
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-16">
+      {/* Titre */}
       <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-3xl sm:text-4xl font-extrabold text-center mb-10 tracking-wide"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-4xl sm:text-5xl font-extrabold uppercase tracking-widest text-center mb-14 relative"
       >
-        Questions Fréquemment Posées
+        FAQs
+        <span className="block w-24 h-1 bg-rose-500 mx-auto mt-2 rounded-full"></span>
       </motion.h2>
 
       <div className="space-y-4">
