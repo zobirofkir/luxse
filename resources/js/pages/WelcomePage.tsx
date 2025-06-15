@@ -7,6 +7,7 @@ import TestimonialComponent from '@/components/TestimonialComponent'
 import VideoComponent from '@/components/VideoComponent'
 import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
+import BandComponent from '@/components/BandComponent'
 
 const WelcomePage = () => {
   return (
@@ -14,6 +15,8 @@ const WelcomePage = () => {
       <Head title='Accueil'/>
 
       <SliderComponent />
+
+      <BandComponent />
 
       <AboutComponent />
 
