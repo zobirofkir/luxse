@@ -64,7 +64,7 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
 
       {/* Content Container */}
       <div
-        className="relative z-10 w-full container bg-white/95 backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-2xl border border-gray-300
+        className="relative z-10 w-full container bg-white backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-2xl border border-gray-300
                     flex flex-col gap-12"
       >
         {/* Title */}
