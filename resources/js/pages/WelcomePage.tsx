@@ -8,6 +8,7 @@ import VideoComponent from '@/components/VideoComponent'
 import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
 import BandComponent from '@/components/BandComponent'
+import LiveComponent from '@/components/LiveComponent'
 
 const WelcomePage = () => {
   return (
@@ -19,6 +20,8 @@ const WelcomePage = () => {
       <BandComponent />
 
       <AboutComponent />
+
+      <LiveComponent />
 
       <ProductComponent />
 
