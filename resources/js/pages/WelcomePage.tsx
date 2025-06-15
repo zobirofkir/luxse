@@ -23,11 +23,19 @@ const WelcomePage = () => {
 
       <ProductComponent />
 
+      <BandComponent />
+
       <CategoryComponent />
+
+      <BandComponent />
 
       <TestimonialComponent />
 
+      <BandComponent />
+
       <VideoComponent />
+
+      <BandComponent />
 
       <ContactComponent />
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const VideoComponent = () => {
   return (
-    <section className="bg-white text-black px-4 sm:px-10">
+    <section className="bg-white text-black px-4 sm:px-10 my-10">
       <div className="mx-auto">
         {/* Titre et sous-titre avec flesh */}
 
