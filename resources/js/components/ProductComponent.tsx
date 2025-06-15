@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "@inertiajs/react";
+import LiveComponent from "./LiveComponent";
 
 const produits = [
   {
@@ -64,6 +65,7 @@ const ProductComponent = () => {
               Products
             </motion.h2>
           </div>
+
           <motion.p
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -74,6 +76,8 @@ const ProductComponent = () => {
           </motion.p>
         </div>
 
+        <LiveComponent />
+        
         {/* Grille des produits */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {produits.map((produit, index) => (

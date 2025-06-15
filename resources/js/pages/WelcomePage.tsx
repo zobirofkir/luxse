@@ -21,8 +21,6 @@ const WelcomePage = () => {
 
       <AboutComponent />
 
-      <LiveComponent />
-
       <ProductComponent />
 
       <CategoryComponent />
