@@ -1,9 +1,12 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
-/**
- * Profile Route
- */
-Route::get("/auth/profile", function () {
-    return inertia("auth/user/ProfilePage");
+Route::prefix('auth')->middleware('auth:api')->group(function () {
+    /**
+     * Profile Route
+     */
+    Route::get('/profile', function () {
+        return inertia('auth/user/ProfilePage');
+    });
 });
