@@ -1,12 +1,15 @@
+import AuthLayout from '@/layouts/auth/auth-layout'
 import { Head } from '@inertiajs/react'
 import React from 'react'
 
 const ProfilePage = () => {
   return (
-    <div>
-      <Head title='Profile'/>
-      Profile
-    </div>
+      <AuthLayout>
+        <section>
+            <Head title='Profile'/>
+            Profile Page
+        </section>
+      </AuthLayout>
   )
 }
 
