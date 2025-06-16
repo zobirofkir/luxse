@@ -17,12 +17,61 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 }
 
+/**
+ * Generates an array of random diamonds for animation
+ */
+const generateDiamonds = (count) =>
+  Array.from({ length: count }).map(() => ({
+    size: Math.random() * 15 + 10, 
+    x: Math.random() * 100, 
+    y: Math.random() * 100, 
+    delay: Math.random() * 10,
+    duration: 5 + Math.random() * 5,
+    rotate: Math.random() * 360,
+    opacity: 0.1 + Math.random() * 0.3,
+  }))
+
+const diamonds = generateDiamonds(15)
+
 const Login = () => {
   return (
     <AppLayout>
       <Head title="Connexion" />
 
-      <section className="min-h-screen flex items-center justify-center bg-white text-black px-4">
+      {/* Animated diamonds background */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[9999]">
+        {diamonds.map(({ size, x, y, delay, duration, rotate, opacity }, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, rotate }}
+            animate={{
+              y: ['0%', '20%', '0%'],
+              rotate: rotate + 360,
+              opacity: [opacity, opacity * 0.5, opacity],
+            }}
+            transition={{
+              delay,
+              duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            style={{
+              width: size,
+              height: size,
+              top: `${y}%`,
+              left: `${x}%`,
+              position: 'absolute',
+              borderLeft: `${size / 2}px solid transparent`,
+              borderRight: `${size / 2}px solid transparent`,
+              borderBottom: `${size}px solid black`,
+              filter: 'drop-shadow(0 0 1px white)',
+              opacity,
+            }}
+          />
+        ))}
+      </div>
+
+      <section className="min-h-screen flex items-center justify-center bg-white text-black px-4 relative z-10">
         <motion.form
           initial="hidden"
           animate="visible"
