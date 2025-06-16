@@ -1,8 +1,15 @@
+import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <AppLayout>
+
+      <section>
+        <h1> Hello </h1>
+      </section>
+
+    </AppLayout>
   )
 }
 
