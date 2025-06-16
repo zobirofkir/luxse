@@ -1,5 +1,5 @@
 import AppLayout from '@/layouts/app-layout'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Head } from '@inertiajs/react'
 
@@ -17,6 +17,24 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 }
 
+/**
+ * 
+ * @param count Génère un tableau de diamants aléatoires pour l’animation
+ * @returns 
+ */
+const generateDiamonds = (count) =>
+  Array.from({ length: count }).map(() => ({
+    size: Math.random() * 15 + 10, 
+    x: Math.random() * 100, 
+    y: Math.random() * 100, 
+    delay: Math.random() * 10,
+    duration: 5 + Math.random() * 5,
+    rotate: Math.random() * 360,
+    opacity: 0.1 + Math.random() * 0.3,
+  }))
+
+const diamonds = generateDiamonds(15)
+
 const Register = () => {
   const [photo, setPhoto] = useState(null)
 
@@ -33,8 +51,42 @@ const Register = () => {
 
   return (
     <AppLayout>
-      <Head title='Inscription'/>
-      <section className="min-h-screen flex items-center justify-center bg-white text-black px-4">
+      <Head title="Inscription" />
+
+      {/* Fond avec diamants animés */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[9999] ">
+        {diamonds.map(({ size, x, y, delay, duration, rotate, opacity }, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, rotate }}
+            animate={{
+              y: ['0%', '20%', '0%'],
+              rotate: rotate + 360,
+              opacity: [opacity, opacity * 0.5, opacity],
+            }}
+            transition={{
+              delay,
+              duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            style={{
+              width: size,
+              height: size,
+              top: `${y}%`,
+              left: `${x}%`,
+              position: 'absolute',
+              borderLeft: `${size / 2}px solid transparent`,
+              borderRight: `${size / 2}px solid transparent`,
+              borderBottom: `${size}px solid black`,
+              filter: 'drop-shadow(0 0 1px white)',
+              opacity,
+            }}
+          />
+        ))}
+      </div>
+
+      <section className="min-h-screen flex items-center justify-center bg-white text-black px-4 relative z-10">
         <motion.form
           initial="hidden"
           animate="visible"
@@ -47,21 +99,21 @@ const Register = () => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="text-3xl font-extrabold mb-8 text-white text-center tracking-wide"
           >
-            Create Account
+            Créer un compte
           </motion.h2>
 
-          {/* Profile Photo */}
+          {/* Photo de profil */}
           <motion.div custom={0} variants={inputVariants} className="mb-6 flex flex-col items-center">
             <label className="mb-3 text-white font-semibold cursor-pointer">
               {photo ? (
                 <img
                   src={photo}
-                  alt="Profile Preview"
+                  alt="Aperçu profil"
                   className="w-24 h-24 rounded-full object-cover border-2 border-white shadow-lg"
                 />
               ) : (
                 <div className="w-24 h-24 rounded-full border-2 border-white flex items-center justify-center text-white text-sm font-semibold bg-black bg-opacity-20 hover:bg-opacity-40 transition cursor-pointer">
-                  Upload Photo
+                  Télécharger la photo
                 </div>
               )}
               <input
@@ -73,15 +125,15 @@ const Register = () => {
             </label>
           </motion.div>
 
-          {/* Full Name */}
+          {/* Nom complet */}
           <motion.div custom={1} variants={inputVariants} className="mb-6">
             <label htmlFor="name" className="block mb-2 text-white font-semibold">
-              Full Name
+              Nom complet
             </label>
             <input
               id="name"
               type="text"
-              placeholder="John Doe"
+              placeholder="Jean Dupont"
               required
               className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
             />
@@ -90,21 +142,21 @@ const Register = () => {
           {/* Email */}
           <motion.div custom={2} variants={inputVariants} className="mb-6">
             <label htmlFor="email" className="block mb-2 text-white font-semibold">
-              Email Address
+              Adresse e-mail
             </label>
             <input
               id="email"
               type="email"
-              placeholder="email@example.com"
+              placeholder="email@exemple.com"
               required
               className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
             />
           </motion.div>
 
-          {/* Password */}
+          {/* Mot de passe */}
           <motion.div custom={3} variants={inputVariants} className="mb-6">
             <label htmlFor="password" className="block mb-2 text-white font-semibold">
-              Password
+              Mot de passe
             </label>
             <input
               id="password"
@@ -115,10 +167,10 @@ const Register = () => {
             />
           </motion.div>
 
-          {/* Retype Password */}
+          {/* Retaper le mot de passe */}
           <motion.div custom={4} variants={inputVariants} className="mb-8">
             <label htmlFor="repassword" className="block mb-2 text-white font-semibold">
-              Retype Password
+              Retaper le mot de passe
             </label>
             <input
               id="repassword"
@@ -136,7 +188,7 @@ const Register = () => {
             whileTap="tap"
             className="w-full py-3 rounded-md bg-white text-black font-bold uppercase tracking-wider shadow-md"
           >
-            Register
+            S’inscrire
           </motion.button>
         </motion.form>
       </section>
