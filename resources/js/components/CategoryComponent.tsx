@@ -94,6 +94,10 @@ const CategoryComponent = () => {
                     {cat.name}
                   </h3>
                   <p className="text-sm text-gray-300">{cat.description}</p>
+
+                  <button className="text-black bg-white py-2 px-4 mt-8 rounded-full">
+                    Tout Afficher
+                  </button>
                 </div>
               </motion.div>
             </div>
