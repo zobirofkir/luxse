@@ -10,6 +10,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * Fillables
+     */
     protected $fillable = [
         'category_id',
         'name',
@@ -21,6 +24,13 @@ class Product extends Model
         'size',
         'image',
         'status',
+    ];
+
+    /**
+     * Casts
+     */
+    protected $casts = [
+        "image" => "array"
     ];
 
     /**
