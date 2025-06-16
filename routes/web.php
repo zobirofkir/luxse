@@ -42,3 +42,5 @@ Route::get('/faqs', function () {
  * Products Routes
  */
 Route::resource('/products', ProductController::class);
+
+require __DIR__ . '/auth.php';
