@@ -66,7 +66,7 @@ class ProductResource extends Resource
                     ])
                     ->default('active')
                     ->required(),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
