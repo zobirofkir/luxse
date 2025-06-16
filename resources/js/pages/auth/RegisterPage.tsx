@@ -35,7 +35,7 @@ const generateDiamonds = (count) =>
 
 const diamonds = generateDiamonds(15)
 
-const Register = () => {
+const RegisterPage = () => {
   const [photo, setPhoto] = useState(null)
 
   const handlePhotoChange = (e) => {
@@ -196,4 +196,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default RegisterPage

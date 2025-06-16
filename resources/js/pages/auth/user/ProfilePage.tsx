@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react'
 import React from 'react'
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <div>
       <Head title='Profile'/>
@@ -10,4 +10,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfilePage

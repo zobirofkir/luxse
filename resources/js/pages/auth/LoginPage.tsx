@@ -33,7 +33,7 @@ const generateDiamonds = (count) =>
 
 const diamonds = generateDiamonds(15)
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <AppLayout>
       <Head title="Connexion" />
@@ -130,4 +130,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginPage
