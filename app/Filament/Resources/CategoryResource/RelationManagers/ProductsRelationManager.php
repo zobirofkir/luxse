@@ -18,12 +18,7 @@ class ProductsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('category_id')
-                    ->label('Category')
-                    ->relationship('category', 'title')
-                    ->required(),
-
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
 
@@ -89,17 +84,12 @@ class ProductsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
 
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('slug')
                     ->toggleable(),
-
-                Tables\Columns\TextColumn::make('category.title')
-                    ->label('Category')
-                    ->sortable()
-                    ->searchable(),
 
                 Tables\Columns\TextColumn::make('price')
                     ->money('MAD', true)

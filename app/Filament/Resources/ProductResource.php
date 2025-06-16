@@ -32,7 +32,7 @@ class ProductResource extends Resource
                     ->relationship('category', 'title')
                     ->required(),
 
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
 
@@ -97,7 +97,7 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
 
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
 
