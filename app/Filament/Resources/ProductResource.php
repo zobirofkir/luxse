@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,28 +11,61 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'Product';
-    protected static ?string $pluralModelLabel = 'Product';
+    protected static ?string $navigationGroup = 'Product Management';
+    protected static ?string $navigationLabel = 'Products';
     protected static ?string $modelLabel = 'Product';
-
-    protected static ?string $navigationGroup = 'Product';
-    protected static ?string $label = 'Product';
-    protected static ?string $pluralLabel = 'Product';
-
+    protected static ?string $pluralModelLabel = 'Products';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'title')
+                    ->required(),
+
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+
+                Forms\Components\Textarea::make('description')
+                    ->rows(3)
+                    ->maxLength(65535),
+
+                Forms\Components\TextInput::make('price')
+                    ->numeric()
+                    ->required()
+                    ->prefix('MAD'),
+
+                Forms\Components\TextInput::make('stock')
+                    ->numeric()
+                    ->default(0),
+
+                Forms\Components\TextInput::make('material')
+                    ->maxLength(255),
+
+                Forms\Components\TextInput::make('size')
+                    ->maxLength(255),
+
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->directory('products')
+                    ->maxSize(2048),
+
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                    ])
+                    ->default('active')
+                    ->required(),
             ]);
     }
 
@@ -40,25 +73,59 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')->sortable(),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('slug')
+                    ->toggleable(),
+
+                Tables\Columns\TextColumn::make('category.title')
+                    ->label('Category')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->money('MAD', true)
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('stock')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->colors([
+                        'success' => 'active',
+                        'danger' => 'inactive',
+                    ])
+                    ->sortable(),
+
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular()
+                    ->size(40),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            // no relation managers
         ];
     }
 
