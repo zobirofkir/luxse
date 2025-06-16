@@ -51,8 +51,28 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('material')
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('size')
-                    ->maxLength(255),
+                Forms\Components\Select::make('size')
+                    ->label('Size')
+                    ->options([
+                        '48' => '48',
+                        '49' => '49',
+                        '50' => '50',
+                        '51' => '51',
+                        '52' => '52',
+                        '53' => '53',
+                        '54' => '54',
+                        '55' => '55',
+                        '56' => '56',
+                        'custom' => 'Custom',
+                    ])
+                    ->required()
+                    ->reactive(),
+
+                Forms\Components\TextInput::make('custom_size')
+                    ->label('Custom Size')
+                    ->maxLength(255)
+                    ->visible(fn ($get) => $get('size') === 'custom')
+                    ->required(fn ($get) => $get('size') === 'custom'),
 
                 Forms\Components\FileUpload::make('image')
                     ->image()
