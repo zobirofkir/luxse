@@ -41,7 +41,7 @@ class CategoryResource extends Resource
                     ->image()
                     ->directory("category"),
                 Textarea::make("description")
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
