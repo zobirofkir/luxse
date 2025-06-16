@@ -8,8 +8,9 @@ import {
   PhoneIcon,
   HomeIcon,
 } from '@heroicons/react/24/outline'
-import { TagIcon, UserCircleIcon } from 'lucide-react';
-import { FaQuestion } from 'react-icons/fa';
+import { TagIcon, UserCircleIcon } from 'lucide-react'
+import { FaQuestion } from 'react-icons/fa'
+import { LockClosedIcon, UserPlusIcon } from '@heroicons/react/24/outline' // for login/register icons
 
 const navItems = [
   {
@@ -42,14 +43,25 @@ const navItems = [
     href: '/contacts',
     icon: <PhoneIcon className="h-5 w-5 inline-block mr-2" />,
   },
-];
+]
+
+// New auth items
+const authItems = [
+  {
+    name: 'Connexion',
+    href: '/login',
+    icon: <LockClosedIcon className="h-5 w-5 inline-block mr-2" />,
+  },
+  {
+    name: 'Inscription',
+    href: '/register',
+    icon: <UserPlusIcon className="h-5 w-5 inline-block mr-2" />,
+  },
+]
 
 const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
   const [isDesktop, setIsDesktop] = useState(false)
 
-  /**
-   * Update isDesktop on mount and resize
-   */
   useEffect(() => {
     const checkScreen = () => setIsDesktop(window.innerWidth >= 768)
     checkScreen()
@@ -72,6 +84,21 @@ const SidebarComponent = ({ menuOpen, setMenuOpen }) => {
     >
       <nav className="flex flex-col space-y-8">
         {navItems.map(({ name, href, icon }) => (
+          <Link
+            key={name}
+            href={href}
+            className="flex items-center text-black text-md font-semibold hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white rounded transition-colors duration-300"
+            onClick={() => setMenuOpen(false)}
+          >
+            {icon}
+            {name}
+          </Link>
+        ))}
+
+        <hr className="border-t border-gray-200 my-6" />
+
+        {/* Auth Links */}
+        {authItems.map(({ name, href, icon }) => (
           <Link
             key={name}
             href={href}
