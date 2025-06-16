@@ -18,10 +18,8 @@ const HeaderComponent = () => {
       const currentScrollY = window.scrollY
 
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // Scrolling Down
         setShowHeader(false)
       } else {
-        // Scrolling Up
         setShowHeader(true)
       }
 
