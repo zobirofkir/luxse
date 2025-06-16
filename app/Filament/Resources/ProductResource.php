@@ -7,6 +7,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -52,29 +53,11 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('material')
                     ->maxLength(255),
 
-                Forms\Components\Select::make('size')
-                    ->label('Size')
-                    ->options([
-                        '48' => '48',
-                        '49' => '49',
-                        '50' => '50',
-                        '51' => '51',
-                        '52' => '52',
-                        '53' => '53',
-                        '54' => '54',
-                        '55' => '55',
-                        '56' => '56',
-                        'custom' => 'Custom',
-                    ])
-                    ->multiple()
+                TextInput::make("size")
                     ->required()
-                    ->reactive(),
-
-                Forms\Components\TextInput::make('custom_size')
-                    ->label('Custom Size')
                     ->maxLength(255)
-                    ->visible(fn ($get) => $get('size') === 'custom')
-                    ->required(fn ($get) => $get('size') === 'custom'),
+                    ->placeholder("S, M, L, XL, XXL, XXXL")
+                    ->helperText("Separate sizes with a comma (,)"),
 
                 Forms\Components\FileUpload::make('image')
                     ->image()
