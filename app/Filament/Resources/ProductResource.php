@@ -66,6 +66,7 @@ class ProductResource extends Resource
                         '56' => '56',
                         'custom' => 'Custom',
                     ])
+                    ->multiple()
                     ->required()
                     ->reactive(),
 

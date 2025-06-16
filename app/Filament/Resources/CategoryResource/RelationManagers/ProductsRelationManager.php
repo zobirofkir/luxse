@@ -53,6 +53,7 @@ class ProductsRelationManager extends RelationManager
                         'custom' => 'Custom',
                     ])
                     ->required()
+                    ->multiple()
                     ->reactive(),
 
                 Forms\Components\TextInput::make('custom_size')
