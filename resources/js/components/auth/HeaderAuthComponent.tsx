@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut } from 'lucide-react';
+import Logo from '@/assets/logo/logo.jpg';
 
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -20,9 +21,9 @@ const HeaderAuthComponent = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <span className="text-2xl font-bold text-black tracking-wide uppercase">
-            Oudghiri
-          </span>
+          <a href="/">
+            <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full" />
+          </a>
         </div>
 
         {/* Profile Section */}
