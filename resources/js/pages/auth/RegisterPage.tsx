@@ -2,6 +2,7 @@ import AppLayout from '@/layouts/app-layout'
 import { motion } from 'framer-motion'
 import { Head } from '@inertiajs/react'
 import { useForm } from '@inertiajs/react'
+import { getLayout } from '@/layouts/layout'
 
 const inputVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -35,7 +36,10 @@ const generateDiamonds = (count) =>
 
 const diamonds = generateDiamonds(15)
 
-const RegisterPage = () => {
+const RegisterPage = ({ auth }) => {
+
+const Layout = getLayout(auth)
+  
 
   const { data, setData, post, processing, errors } = useForm({
     name: '',
@@ -51,7 +55,7 @@ const RegisterPage = () => {
   }
 
   return (
-    <AppLayout>
+    <Layout>
       <Head title="Inscription" />
 
 
@@ -142,7 +146,7 @@ const RegisterPage = () => {
           </motion.button>
         </motion.form>
       </section>
-    </AppLayout>
+    </Layout>
   )
 }
 

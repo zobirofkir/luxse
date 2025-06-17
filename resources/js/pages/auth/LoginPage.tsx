@@ -2,6 +2,7 @@ import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Head, useForm } from '@inertiajs/react'
+import { getLayout } from '@/layouts/layout'
 
 const inputVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -30,7 +31,7 @@ const generateDiamonds = (count) =>
 
 const diamonds = generateDiamonds(15)
 
-const LoginPage = () => {
+const LoginPage = ({ auth }) => {
   const { data, setData, post, processing, errors } = useForm({
     email: '',
     password: '',
@@ -41,8 +42,11 @@ const LoginPage = () => {
     post('/login')
   }
 
+  const Layout = getLayout(auth)
+  
+
   return (
-    <AppLayout>
+    <Layout>
       <Head title="Connexion" />
 
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-[9999]">
@@ -139,7 +143,7 @@ const LoginPage = () => {
           </motion.button>
         </motion.form>
       </section>
-    </AppLayout>
+    </Layout>
   )
 }
 
