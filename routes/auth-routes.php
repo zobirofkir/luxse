@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -9,8 +11,11 @@ Route::get("/login", function() {
 });
 
 /**
+ * Get Register Form
+ */
+Route::get('/register', [AuthController::class, 'index']);
+
+/**
  * Register Route
  */
-Route::get("/register", function() {
-    return inertia("auth/RegisterPage");
-});
+Route::post('/register', [AuthController::class, 'register']);
