@@ -1,5 +1,4 @@
 import AppLayout from '@/layouts/app-layout'
-import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Head } from '@inertiajs/react'
 import { useForm } from '@inertiajs/react'
@@ -37,7 +36,6 @@ const generateDiamonds = (count) =>
 const diamonds = generateDiamonds(15)
 
 const RegisterPage = () => {
-  const [photo, setPhoto] = useState(null)
 
   const { data, setData, post, processing, errors } = useForm({
     name: '',
@@ -46,16 +44,6 @@ const RegisterPage = () => {
     password_confirmation: '',
   })
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setPhoto(reader.result)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -82,29 +70,6 @@ const RegisterPage = () => {
           >
             Créer un compte
           </motion.h2>
-
-          {/* Photo */}
-          <motion.div custom={0} variants={inputVariants} className="mb-6 flex flex-col items-center">
-            <label className="mb-3 text-white font-semibold cursor-pointer">
-              {photo ? (
-                <img
-                  src={photo}
-                  alt="Aperçu profil"
-                  className="w-24 h-24 rounded-full object-cover border-2 border-white shadow-lg"
-                />
-              ) : (
-                <div className="w-24 h-24 rounded-full border-2 border-white flex items-center justify-center text-white text-sm font-semibold bg-black bg-opacity-20 hover:bg-opacity-40 transition cursor-pointer">
-                  Télécharger la photo
-                </div>
-              )}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoChange}
-                className="hidden"
-              />
-            </label>
-          </motion.div>
 
           {/* Nom complet */}
           <motion.div custom={1} variants={inputVariants} className="mb-6">
