@@ -22,3 +22,8 @@ Route::get('/register', [AuthController::class, 'registerForm']);
  * Register Route
  */
 Route::post('/register', [AuthController::class, 'register']);
+
+/**
+ * Logout Route
+ */
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

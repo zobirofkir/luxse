@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
+import { router } from '@inertiajs/react';
 
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -15,6 +16,11 @@ const HeaderAuthComponent = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    router.visit('/logout') 
+  }
 
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm">
@@ -50,7 +56,7 @@ const HeaderAuthComponent = () => {
                   </button>
                 </li>
                 <li>
-                  <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                  <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors" onClick={handleLogout}>
                     <LogOut className="w-4 h-4 mr-2 text-gray-500" />
                     Logout
                   </button>
