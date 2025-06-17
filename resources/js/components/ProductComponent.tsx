@@ -51,9 +51,9 @@ const ProductComponent = ({ products }) => {
                 <div className="w-full h-80 overflow-hidden">
                   <img
                     src={
-                      Array.isArray(product.images)
-                        ? product.images[0]
-                        : product.image
+                      Array.isArray(product.image) && product.image.length > 0
+                        ? product.image[0]
+                        : ''
                     }
                     alt={product.title}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-500 group-hover:scale-105"
