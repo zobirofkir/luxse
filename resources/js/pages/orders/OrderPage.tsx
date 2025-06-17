@@ -1,8 +1,15 @@
+import { getLayout } from '@/layouts/layout';
 import React from 'react'
 
-function OrderPage() {
+function OrderPage({ auth }) {
+    const Layout = getLayout(auth);
+    
   return (
-    <div>OrderPage</div>
+    <Layout>
+        <section>
+            Orders
+        </section>
+    </Layout>
   )
 }
 
