@@ -70,7 +70,7 @@ const ProductComponent = ({ products }) => {
                     onClick={(e) => e.preventDefault()}
                     className="mt-4 w-fit px-6 py-2 border border-black uppercase text-xs sm:text-sm font-semibold tracking-widest hover:bg-black hover:text-white transition-all duration-300"
                   >
-                    Add to cart
+                    Afficher le produit
                   </button>
                 </div>
               </motion.div>
