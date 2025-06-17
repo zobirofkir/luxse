@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
-import { router } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -50,10 +50,12 @@ const HeaderAuthComponent = () => {
             <div className="absolute right-0 mt-3 w-44 bg-white border border-gray-200 rounded-lg shadow-lg animate-fade-in z-50">
               <ul className="py-2 text-sm text-gray-700">
                 <li>
-                  <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
-                    <User className="w-4 h-4 mr-2 text-gray-500" />
-                    Profile
-                  </button>
+                  <Link href='/auth/profile'>
+                      <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                        <User className="w-4 h-4 mr-2 text-gray-500" />
+                        Profile
+                      </button>
+                  </Link>
                 </li>
                 <li>
                   <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors" onClick={handleLogout}>
