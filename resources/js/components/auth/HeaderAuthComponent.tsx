@@ -1,16 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { User, LogOut } from 'lucide-react';
+import { User, LogOut, Menu, X } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
 import { Link, router } from '@inertiajs/react';
 
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  const navItems = [
+    { name: 'Categories', href: '/categories' },
+    { name: 'Produits', href: '/products' },
+    { name: 'FAQ', href: '/faqs' },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -25,12 +36,31 @@ const HeaderAuthComponent = () => {
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
+        {/* Logo and Mobile Menu Button */}
+        <div className="flex items-center space-x-4">
+          <button 
+            className="md:hidden focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
           <a href="/">
             <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full" />
           </a>
         </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          {navItems.map((item) => (
+            <Link 
+              key={item.name}
+              href={item.href}
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
         {/* Profile Section */}
         <div className="relative" ref={dropdownRef}>
@@ -67,6 +97,28 @@ const HeaderAuthComponent = () => {
             </div>
           )}
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div 
+            ref={mobileMenuRef}
+            className="md:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-200 shadow-lg z-40 animate-fade-in"
+          >
+            <ul className="py-4 px-6 space-y-3">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    href={item.href}
+                    className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
