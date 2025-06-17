@@ -56,7 +56,7 @@ const HeaderAuthComponent = () => {
             <Link 
               key={item.name}
               href={item.href}
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="text-gray-700 hover:text-gray-600 transition-colors"
             >
               {item.name}
             </Link>
@@ -110,7 +110,7 @@ const HeaderAuthComponent = () => {
                 <li key={item.name}>
                   <Link 
                     href={item.href}
-                    className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
+                    className="block py-2 text-gray-700 hover:text-gray-600 transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
