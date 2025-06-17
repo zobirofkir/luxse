@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
             'stock' => $this->stock,
             'material' => $this->material,
             'size' => $this->size,
-            'images' => asset('storage/' . $this->image), 
+            'image' => collect($this->image)->map(fn($img) => asset('storage/' . $img)),
             'status' => $this->status,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
