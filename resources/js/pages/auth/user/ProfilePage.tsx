@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import React from 'react';
 import { User, Lock, Settings } from 'lucide-react';
 
-const ProfilePage = () => {
+const ProfilePage = ({ auth }) => {
   return (
     <AuthLayout>
       <Head title="Profil" />
@@ -12,13 +12,13 @@ const ProfilePage = () => {
         {/* En-tête */}
         <div className="flex items-center space-x-4 mb-10">
           <img
-            src="https://i.pravatar.cc/100?img=13"
+            src={auth.data.avatar_url || "https://i.pravatar.cc/100?img=13"}
             alt="Avatar de l'utilisateur"
             className="w-20 h-20 rounded-full border border-gray-300"
           />
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Jean Dupont</h1>
-            <p className="text-sm text-gray-500">jean.dupont@exemple.com</p>
+            <h1 className="text-2xl font-bold text-gray-900">{auth.data.name}</h1>
+            <p className="text-sm text-gray-500">{auth.data.email}</p>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ const ProfilePage = () => {
               <input
                 type="text"
                 className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                defaultValue="Jean"
+                defaultValue={auth.data.first_name}
               />
             </div>
             <div>
@@ -42,7 +42,7 @@ const ProfilePage = () => {
               <input
                 type="text"
                 className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                defaultValue="Dupont"
+                defaultValue={auth.data.last_name}
               />
             </div>
             <div className="md:col-span-2">
@@ -50,7 +50,7 @@ const ProfilePage = () => {
               <input
                 type="email"
                 className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                defaultValue="jean.dupont@exemple.com"
+                defaultValue={auth.data.email}
               />
             </div>
           </form>
@@ -68,7 +68,7 @@ const ProfilePage = () => {
               <input
                 type="text"
                 className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                defaultValue="jeandupont"
+                defaultValue={auth.data.username}
               />
             </div>
             <div>
@@ -76,7 +76,7 @@ const ProfilePage = () => {
               <input
                 type="text"
                 className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                defaultValue="+33600000000"
+                defaultValue={auth.data.phone}
               />
             </div>
           </form>
