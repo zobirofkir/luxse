@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get("/login", function() {
     return inertia("auth/LoginPage");
-});
+})->name('login');
 
 /**
  * Get Register Form

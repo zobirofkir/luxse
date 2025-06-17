@@ -2,6 +2,7 @@ import AppLayout from '@/layouts/app-layout'
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Head } from '@inertiajs/react'
+import { useForm } from '@inertiajs/react'
 
 const inputVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -38,6 +39,13 @@ const diamonds = generateDiamonds(15)
 const RegisterPage = () => {
   const [photo, setPhoto] = useState(null)
 
+  const { data, setData, post, processing, errors } = useForm({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  })
+
   const handlePhotoChange = (e) => {
     const file = e.target.files[0]
     if (file) {
@@ -49,49 +57,22 @@ const RegisterPage = () => {
     }
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    post('/register') 
+  }
+
   return (
     <AppLayout>
       <Head title="Inscription" />
 
-      {/* Fond avec diamants animés */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-[9999] ">
-        {diamonds.map(({ size, x, y, delay, duration, rotate, opacity }, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, rotate }}
-            animate={{
-              y: ['0%', '20%', '0%'],
-              rotate: rotate + 360,
-              opacity: [opacity, opacity * 0.5, opacity],
-            }}
-            transition={{
-              delay,
-              duration,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              width: size,
-              height: size,
-              top: `${y}%`,
-              left: `${x}%`,
-              position: 'absolute',
-              borderLeft: `${size / 2}px solid transparent`,
-              borderRight: `${size / 2}px solid transparent`,
-              borderBottom: `${size}px solid black`,
-              filter: 'drop-shadow(0 0 1px white)',
-              opacity,
-            }}
-          />
-        ))}
-      </div>
 
       <section className="min-h-screen flex items-center justify-center bg-white text-black px-4 relative z-10">
         <motion.form
           initial="hidden"
           animate="visible"
           className="max-w-md w-full bg-black bg-opacity-90 p-10 rounded-lg shadow-lg"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
@@ -102,7 +83,7 @@ const RegisterPage = () => {
             Créer un compte
           </motion.h2>
 
-          {/* Photo de profil */}
+          {/* Photo */}
           <motion.div custom={0} variants={inputVariants} className="mb-6 flex flex-col items-center">
             <label className="mb-3 text-white font-semibold cursor-pointer">
               {photo ? (
@@ -133,10 +114,11 @@ const RegisterPage = () => {
             <input
               id="name"
               type="text"
-              placeholder="Jean Dupont"
-              required
-              className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+              value={data.name}
+              onChange={(e) => setData('name', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
             />
+            {errors.name && <div className="text-red-500 text-sm mt-1">{errors.name}</div>}
           </motion.div>
 
           {/* Email */}
@@ -147,10 +129,11 @@ const RegisterPage = () => {
             <input
               id="email"
               type="email"
-              placeholder="email@exemple.com"
-              required
-              className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+              value={data.email}
+              onChange={(e) => setData('email', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
             />
+            {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
           </motion.div>
 
           {/* Mot de passe */}
@@ -161,34 +144,36 @@ const RegisterPage = () => {
             <input
               id="password"
               type="password"
-              placeholder="********"
-              required
-              className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+              value={data.password}
+              onChange={(e) => setData('password', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
             />
+            {errors.password && <div className="text-red-500 text-sm mt-1">{errors.password}</div>}
           </motion.div>
 
-          {/* Retaper le mot de passe */}
+          {/* Confirmation */}
           <motion.div custom={4} variants={inputVariants} className="mb-8">
-            <label htmlFor="repassword" className="block mb-2 text-white font-semibold">
+            <label htmlFor="password_confirmation" className="block mb-2 text-white font-semibold">
               Retaper le mot de passe
             </label>
             <input
-              id="repassword"
+              id="password_confirmation"
               type="password"
-              placeholder="********"
-              required
-              className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+              value={data.password_confirmation}
+              onChange={(e) => setData('password_confirmation', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
             />
           </motion.div>
 
           <motion.button
             type="submit"
+            disabled={processing}
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
             className="w-full py-3 rounded-md bg-white text-black font-bold uppercase tracking-wider shadow-md"
           >
-            S’inscrire
+            {processing ? 'En cours...' : 'S’inscrire'}
           </motion.button>
         </motion.form>
       </section>

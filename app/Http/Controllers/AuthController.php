@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -14,6 +15,8 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        
+        User::create($request->validated());
+
+        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
 }
