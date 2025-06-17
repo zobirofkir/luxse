@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { User, LogOut, Menu, X } from 'lucide-react';
+import { User, LogOut, Menu, X, ShoppingCart } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
 import { Link, router } from '@inertiajs/react';
 
@@ -85,6 +85,14 @@ const HeaderAuthComponent = () => {
                       <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
                         <User className="w-4 h-4 mr-2 text-gray-500" />
                         Profile
+                      </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/auth/orders'>
+                      <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                        <ShoppingCart className="w-4 h-4 mr-2 text-gray-500" />
+                         Orders
                       </button>
                   </Link>
                 </li>
