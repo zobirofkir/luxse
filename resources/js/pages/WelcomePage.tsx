@@ -10,9 +10,11 @@ import { Head } from '@inertiajs/react'
 import BandComponent from '@/components/BandComponent'
 import LiveComponent from '@/components/LiveComponent'
 import authLayout from '@/layouts/auth/auth-layout'
+import { getLayout } from '@/layouts/layout'
 
 const WelcomePage = ({ auth }) => {
-  const Layout = auth?.user ? authLayout : AppLayout
+
+  const Layout = getLayout(auth)
 
   return (
     <Layout>
