@@ -1,62 +1,16 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const categories = [
-  {
-    id: 1,
-    name: "Bagues",
-    description: "Découvrez notre sélection de bagues en diamant intemporelles.",
-    image:
-      "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
-  },
-  {
-    id: 2,
-    name: "Colliers",
-    description: "Des colliers raffinés pour sublimer votre élégance.",
-    image:
-      "https://t4.ftcdn.net/jpg/11/54/47/75/360_F_1154477568_0AQ6ccQGFevGn6op7H03nXyjrZjpoCJZ.jpg",
-  },
-  {
-    id: 3,
-    name: "Bracelets",
-    description: "Bracelets en or et diamants, parfaits pour toutes les occasions.",
-    image:
-      "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
-  },
-  {
-    id: 4,
-    name: "Bagues",
-    description: "Découvrez notre sélection de bagues en diamant intemporelles.",
-    image:
-      "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
-  },
-  {
-    id: 5,
-    name: "Colliers",
-    description: "Des colliers raffinés pour sublimer votre élégance.",
-    image:
-      "https://t4.ftcdn.net/jpg/11/54/47/75/360_F_1154477568_0AQ6ccQGFevGn6op7H03nXyjrZjpoCJZ.jpg",
-  },
-  {
-    id: 6,
-    name: "Bracelets",
-    description: "Bracelets en or et diamants, parfaits pour toutes les occasions.",
-    image:
-      "https://t3.ftcdn.net/jpg/08/17/34/54/360_F_817345491_l7YcXOrtBR6C8pSsUeNyOQ3ImRaGq42P.jpg",
-  },
-];
+const CategoryComponent = ({ categories }) => {
+  const [flipped, setFlipped] = useState(null);
 
-const CategoryComponent = () => {
-  const [flipped, setFlipped] = useState<number | null>(null);
-
-  const handleFlip = (id: number) => {
+  const handleFlip = (id) => {
     setFlipped(flipped === id ? null : id);
   };
 
   return (
     <section className="bg-white text-black pb-10 px-4 mt-10 sm:px-8">
       <div className="container mx-auto">
-        {/* Title Section */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-16">
           <div className="flex items-center space-x-4">
             <div className="w-1 h-12 bg-blue-600 rounded-full"></div>
@@ -71,7 +25,6 @@ const CategoryComponent = () => {
           </div>
         </div>
 
-        {/* Category Grid */}
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat) => (
             <div
@@ -83,17 +36,12 @@ const CategoryComponent = () => {
                 className="w-full h-full relative"
                 animate={{ rotateY: flipped === cat.id ? 180 : 0 }}
                 transition={{ duration: 0.8 }}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
+                style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Front Side */}
                 <div
                   className="absolute w-full h-full backface-hidden"
-                  style={{
-                    WebkitBackfaceVisibility: "hidden",
-                    backfaceVisibility: "hidden",
-                  }}
+                  style={{ WebkitBackfaceVisibility: "hidden", backfaceVisibility: "hidden" }}
                 >
                   <img
                     src={cat.image}
@@ -115,7 +63,6 @@ const CategoryComponent = () => {
                     {cat.name}
                   </h3>
                   <p className="text-sm text-gray-300">{cat.description}</p>
-
                   <button className="text-black bg-white py-2 px-4 mt-8 rounded-full">
                     Tout Afficher
                   </button>

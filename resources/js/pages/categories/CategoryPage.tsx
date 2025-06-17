@@ -1,17 +1,17 @@
 import CategoryComponent from '@/components/CategoryComponent'
-import AppLayout from '@/layouts/app-layout'
 import { getLayout } from '@/layouts/layout'
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import React from 'react'
 
 const CategoryPage = ({ auth }) => {
   const Layout = getLayout(auth)
-  
+  const { categories } = usePage().props
+
   return (
     <Layout>
-      <section>
-        <Head title='Categories'/>
-        <CategoryComponent />
+      <section className="p-6">
+        <Head title="Catégories" />
+        <CategoryComponent categories={categories} />
       </section>
     </Layout>
   )

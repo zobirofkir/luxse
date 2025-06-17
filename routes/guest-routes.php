@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,9 @@ Route::get('/abouts', function () {
 })->name('abouts');
 
 /**
- * Category Page Route
+ * Category Page Routes
  */
-Route::get('/categories', function () {
-    return inertia('categories/CategoryPage');
-})->name('categories');
+Route::resource('/categories', CategoryController::class);
 
 /**
  * Contact Page Route
