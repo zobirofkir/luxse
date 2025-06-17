@@ -9,10 +9,13 @@ import AppLayout from '@/layouts/app-layout'
 import { Head } from '@inertiajs/react'
 import BandComponent from '@/components/BandComponent'
 import LiveComponent from '@/components/LiveComponent'
+import authLayout from '@/layouts/auth/auth-layout'
 
-const WelcomePage = () => {
+const WelcomePage = ({ auth }) => {
+  const Layout = auth?.user ? authLayout : AppLayout
+
   return (
-    <AppLayout>
+    <Layout>
       <Head title='Accueil'/>
 
       <SliderComponent />
@@ -39,7 +42,7 @@ const WelcomePage = () => {
 
       <ContactComponent />
 
-    </AppLayout>
+    </Layout>
   )
 }
 
