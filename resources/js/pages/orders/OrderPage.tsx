@@ -12,7 +12,7 @@ function OrderPage({ auth }) {
             date: '2023-05-15',
             status: 'Delivered',
             tracking: 'UPS-123456789',
-            image: '/images/headphones.jpg'
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
         },
         {
             id: 'ORD-1002',
@@ -20,7 +20,7 @@ function OrderPage({ auth }) {
             date: '2023-06-02',
             status: 'In Transit',
             tracking: 'FEDEX-987654321',
-            image: '/images/smartwatch.jpg'
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
         },
         {
             id: 'ORD-1003',
@@ -28,7 +28,47 @@ function OrderPage({ auth }) {
             date: '2023-06-10',
             status: 'Shipped',
             tracking: 'USPS-567891234',
-            image: '/images/speaker.jpg'
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
+        },
+        {
+            id: 'ORD-1004',
+            product: 'graytooth Speaker',
+            date: '2023-06-10',
+            status: 'Shipped',
+            tracking: 'USPS-567891234',
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
+        },
+        {
+            id: 'ORD-1005',
+            product: 'graytooth Speaker',
+            date: '2023-06-10',
+            status: 'Shipped',
+            tracking: 'USPS-567891234',
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
+        },
+        {
+            id: 'ORD-1006',
+            product: 'graytooth Speaker',
+            date: '2023-06-10',
+            status: 'Shipped',
+            tracking: 'USPS-567891234',
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
+        },
+        {
+            id: 'ORD-1007',
+            product: 'graytooth Speaker',
+            date: '2023-06-10',
+            status: 'Shipped',
+            tracking: 'USPS-567891234',
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
+        },
+        {
+            id: 'ORD-1008',
+            product: 'graytooth Speaker',
+            date: '2023-06-10',
+            status: 'Shipped',
+            tracking: 'USPS-567891234',
+            image: 'https://media.istockphoto.com/id/481365786/fr/photo/diamond.jpg?s=612x612&w=0&k=20&c=FqikD3QL45ZOl7UdgCjz4HJjd4p6j0o46UrPLlayUbg='
         },
     ];
 
