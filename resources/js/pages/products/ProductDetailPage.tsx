@@ -1,9 +1,9 @@
-import AppLayout from '@/layouts/app-layout';
-import React, { useState, useEffect } from 'react';
+import { getLayout } from '@/layouts/layout';
+import { useState, useEffect } from 'react';
 
 const DELIVERY_CACHE_KEY = `delivery_cache_product_`;
 
-const ProductDetailPage = ({ id }) => {
+const ProductDetailPage = ({ id, auth }) => {
   const product = {
     id,
     name: "Bague Éclat Suprême",
@@ -67,8 +67,10 @@ const ProductDetailPage = ({ id }) => {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [quantity, setQuantity] = useState(1);
 
+  const Layout = getLayout(auth)
+  
   return (
-    <AppLayout>
+    <Layout>
       <section className="max-w-7xl mx-auto p-6 sm:p-10 bg-white text-gray-900 min-h-screen flex flex-col">
         <div className="flex flex-col md:flex-row gap-12 md:gap-20">
           {/* Images Gallery */}
@@ -180,7 +182,7 @@ const ProductDetailPage = ({ id }) => {
           </div>
         </div>
       </section>
-    </AppLayout>
+    </Layout>
   );
 };
 
