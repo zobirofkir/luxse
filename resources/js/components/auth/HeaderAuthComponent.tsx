@@ -10,6 +10,7 @@ const HeaderAuthComponent = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
+    { name: 'Accueil', href: '/' },
     { name: 'Categories', href: '/categories' },
     { name: 'Produits', href: '/products' },
     { name: 'FAQ', href: '/faqs' },
