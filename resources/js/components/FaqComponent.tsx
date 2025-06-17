@@ -104,7 +104,7 @@ const FaqComponent = () => {
   }
 
   return (
-    <section className="w-full max-w-4xl mx-auto px-4 py-16">
+    <section className="w-full mx-auto px-4 py-16">
       {/* Titre */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
