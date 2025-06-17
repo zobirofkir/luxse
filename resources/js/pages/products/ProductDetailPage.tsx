@@ -1,4 +1,5 @@
 import { getLayout } from '@/layouts/layout';
+import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
 const DELIVERY_CACHE_KEY = `delivery_cache_product_`;
@@ -72,6 +73,7 @@ const ProductDetailPage = ({ id, auth }) => {
   return (
     <Layout>
       <section className="max-w-7xl mx-auto p-6 sm:p-10 bg-white text-gray-900 min-h-screen flex flex-col">
+        <Head title={product.name} />
         <div className="flex flex-col md:flex-row gap-12 md:gap-20">
           {/* Images Gallery */}
           <div className="flex-1 flex flex-col">
