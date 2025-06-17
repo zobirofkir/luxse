@@ -15,7 +15,7 @@ import { getLayout } from '@/layouts/layout'
 const WelcomePage = ({ auth }) => {
 
   const Layout = getLayout(auth)
-  const { categories } = usePage().props
+  const { categories, products } = usePage().props
 
   return (
     <Layout>
@@ -27,7 +27,7 @@ const WelcomePage = ({ auth }) => {
 
       <AboutComponent />
 
-      <ProductComponent />
+      <ProductComponent products={products}/>
 
       <BandComponent />
 
