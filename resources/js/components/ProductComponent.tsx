@@ -53,7 +53,7 @@ const ProductComponent = ({ products }) => {
                     src={
                       Array.isArray(product.images)
                         ? product.images[0]
-                        : product.images
+                        : product.image
                     }
                     alt={product.title}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-transform duration-500 group-hover:scale-105"
