@@ -44,12 +44,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
-            return back()->with('error', 'Identifiants incorrects');
+            return back()->withErrors([
+                'email' => 'Identifiants incorrects.',
+            ]);
         }
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Connexion réussie.');
+        return redirect()->intended('/auth/profile')->with('success', 'Connexion réussie.');
     }
 
     /**

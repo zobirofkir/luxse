@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Get Login Form
  */
-Route::get('/login', [AuthController::class, 'loginForm']);
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 
 /**
  * Login Route
