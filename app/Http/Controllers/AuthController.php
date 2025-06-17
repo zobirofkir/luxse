@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     /**
-     * Register Form
+     * Register Page
      */
     public function registerForm()
     {
@@ -17,17 +19,17 @@ class AuthController extends Controller
     }
 
     /**
-     * Register Controller and Request
+     * Register Logic
      */
     public function register(RegisterRequest $request)
     {
         User::create($request->validated());
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
+        return redirect()->route('login')->with('success', 'Inscription réussie. Connectez-vous.');
     }
 
     /**
-     * Login Form
+     * Login Page
      */
     public function loginForm()
     {
@@ -35,19 +37,30 @@ class AuthController extends Controller
     }
 
     /**
-     * Login Controller and Request
+     * Login Logic
      */
-    public function login(RegisterRequest $request)
+    public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Invalid credentials');
+        if (!Auth::attempt($credentials)) {
+            return back()->with('error', 'Identifiants incorrects');
         }
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Login successful.');
+        return redirect()->route('dashboard')->with('success', 'Connexion réussie.');
     }
 
+    /**
+     * Logout
+     */
+    public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Déconnexion réussie.');
+    }
 }
