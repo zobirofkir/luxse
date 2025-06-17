@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout'
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Head } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 
 const inputVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -17,14 +17,11 @@ const buttonVariants = {
   tap: { scale: 0.95 },
 }
 
-/**
- * Generates an array of random diamonds for animation
- */
 const generateDiamonds = (count) =>
   Array.from({ length: count }).map(() => ({
-    size: Math.random() * 15 + 10, 
-    x: Math.random() * 100, 
-    y: Math.random() * 100, 
+    size: Math.random() * 15 + 10,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
     delay: Math.random() * 10,
     duration: 5 + Math.random() * 5,
     rotate: Math.random() * 360,
@@ -34,11 +31,20 @@ const generateDiamonds = (count) =>
 const diamonds = generateDiamonds(15)
 
 const LoginPage = () => {
+  const { data, setData, post, processing, errors } = useForm({
+    email: '',
+    password: '',
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    post('/login')
+  }
+
   return (
     <AppLayout>
       <Head title="Connexion" />
 
-      {/* Animated diamonds background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-[9999]">
         {diamonds.map(({ size, x, y, delay, duration, rotate, opacity }, i) => (
           <motion.div
@@ -76,7 +82,7 @@ const LoginPage = () => {
           initial="hidden"
           animate="visible"
           className="max-w-md w-full bg-black bg-opacity-90 p-10 rounded-lg shadow-lg"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
@@ -95,10 +101,13 @@ const LoginPage = () => {
             <input
               id="email"
               type="email"
-              placeholder="email@exemple.com"
+              value={data.email}
+              onChange={(e) => setData('email', e.target.value)}
               required
+              placeholder="email@exemple.com"
               className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
             />
+            {errors.email && <div className="text-red-500 mt-1 text-sm">{errors.email}</div>}
           </motion.div>
 
           {/* Password */}
@@ -109,20 +118,24 @@ const LoginPage = () => {
             <input
               id="password"
               type="password"
-              placeholder="********"
+              value={data.password}
+              onChange={(e) => setData('password', e.target.value)}
               required
+              placeholder="********"
               className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
             />
+            {errors.password && <div className="text-red-500 mt-1 text-sm">{errors.password}</div>}
           </motion.div>
 
           <motion.button
             type="submit"
+            disabled={processing}
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
-            className="w-full py-3 rounded-md bg-white text-black font-bold uppercase tracking-wider shadow-md"
+            className="w-full py-3 rounded-md bg-white text-black font-bold uppercase tracking-wider shadow-md disabled:opacity-50"
           >
-            Connexion
+            {processing ? 'Connexion...' : 'Connexion'}
           </motion.button>
         </motion.form>
       </section>
