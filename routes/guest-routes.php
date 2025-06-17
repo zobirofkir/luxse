@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /**
  * Home Page Route
  */
-Route::get('/', function () {
-    return inertia('WelcomePage');
-})->name('home');
+Route::resource('/', WelcomeController::class);
 
 /**
  * About Page Route

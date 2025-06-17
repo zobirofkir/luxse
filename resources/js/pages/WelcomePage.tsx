@@ -6,7 +6,7 @@ import SliderComponent from '@/components/SliderComponent'
 import TestimonialComponent from '@/components/TestimonialComponent'
 import VideoComponent from '@/components/VideoComponent'
 import AppLayout from '@/layouts/app-layout'
-import { Head } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import BandComponent from '@/components/BandComponent'
 import LiveComponent from '@/components/LiveComponent'
 import authLayout from '@/layouts/auth/auth-layout'
@@ -15,6 +15,7 @@ import { getLayout } from '@/layouts/layout'
 const WelcomePage = ({ auth }) => {
 
   const Layout = getLayout(auth)
+  const { categories } = usePage().props
 
   return (
     <Layout>
@@ -30,7 +31,7 @@ const WelcomePage = ({ auth }) => {
 
       <BandComponent />
 
-      <CategoryComponent />
+      <CategoryComponent categories={categories}/>
 
       <BandComponent />
 
