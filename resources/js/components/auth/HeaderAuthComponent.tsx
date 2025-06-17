@@ -46,7 +46,7 @@ const HeaderAuthComponent = () => {
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
           <a href="/">
-            <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full" />
+            <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full md:block hidden" />
           </a>
         </div>
 
