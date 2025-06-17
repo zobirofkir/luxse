@@ -13,7 +13,7 @@ const HeaderAuthComponent = () => {
     { name: 'Accueil', href: '/' },
     { name: 'Categories', href: '/categories' },
     { name: 'Produits', href: '/products' },
-    { name: 'FAQ', href: '/faqs' },
+    { name: 'Faq', href: '/faqs' },
   ];
 
   useEffect(() => {
