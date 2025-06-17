@@ -12,5 +12,12 @@ Route::middleware(['auth'])->prefix('auth')->group(function () {
      * Profile Route
      */
     Route::resource('profile', ProfileController::class);
+
+    /**
+     * Order Route
+     */
+    Route::get('/orders', function () {
+        return inertia('orders/OrderPage');
+    });
     
 });
