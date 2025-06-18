@@ -34,4 +34,18 @@ class ProductController extends Controller
         ]);
     }
 
+    /**
+     * Filter Products By Category
+     */
+    public function categoryProductBySlug($slug)
+    {
+        $products = Product::whereHas('category', function ($query) use ($slug) {
+            $query->where('slug', $slug);
+        })->with('category')->get();
+
+        return inertia('products/ProductPage', [
+            "products" => ProductResource::collection($products)->resolve(),
+        ]);
+    }
+
 }

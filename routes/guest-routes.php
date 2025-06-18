@@ -35,6 +35,11 @@ Route::get('/faqs', function () {
 Route::resource('/products', ProductController::class);
 
 /**
+ * Filter Products By Selected Category Slug
+ */
+Route::get('/category/{slug}', [ProductController::class, 'categoryProductBySlug'])->name('products.byCategorySlug');
+
+/**
  * Contact Page Route
  */
 Route::get('/contacts', function () {

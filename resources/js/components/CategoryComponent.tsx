@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { router } from '@inertiajs/react';
 
 const CategoryComponent = ({ categories }) => {
   const [flipped, setFlipped] = useState(null);
@@ -63,7 +64,7 @@ const CategoryComponent = ({ categories }) => {
                     {cat.name}
                   </h3>
                   <p className="text-sm text-gray-300">{cat.description}</p>
-                  <button className="text-black bg-white py-2 px-4 mt-8 rounded-full">
+                  <button className="text-black bg-white py-2 px-4 mt-8 rounded-full" onClick={() => router.get(`/category/${cat.slug}`)}>
                     Tout Afficher
                   </button>
                 </div>
