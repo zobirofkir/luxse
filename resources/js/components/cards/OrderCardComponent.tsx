@@ -1,6 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Helper function to translate order status
+const getStatusLabel = (status) => {
+  switch (status) {
+    case 'pending':
+      return 'En attente';
+    case 'processing':
+      return 'En cours';
+    case 'shipped':
+      return 'Expédié';
+    case 'delivered':
+      return 'Livré';
+    case 'cancelled':
+      return 'Annulé';
+    default:
+      return 'Inconnu';
+  }
+};
+
+// Helper function to determine status color classes
+const getStatusClasses = (status) => {
+  switch (status) {
+    case 'pending':
+      return 'bg-yellow-100 text-yellow-700';
+    case 'processing':
+      return 'bg-blue-100 text-blue-700';
+    case 'shipped':
+      return 'bg-purple-100 text-purple-700';
+    case 'delivered':
+      return 'bg-green-100 text-green-700';
+    case 'cancelled':
+      return 'bg-red-100 text-red-700';
+    default:
+      return 'bg-gray-200 text-gray-600';
+  }
+};
+
 const OrderCardComponent = ({ order }) => {
   return (
     <motion.div
@@ -12,15 +48,9 @@ const OrderCardComponent = ({ order }) => {
           Commande n°{order.id}
         </h2>
         <span
-          className={`px-3 py-1 text-sm rounded-full ${
-            order.status === 'pending'
-              ? 'bg-yellow-100 text-yellow-700'
-              : order.status === 'paid'
-              ? 'bg-green-100 text-green-700'
-              : 'bg-gray-200 text-gray-600'
-          }`}
+          className={`px-3 py-1 text-sm rounded-full ${getStatusClasses(order.status)}`}
         >
-          {order.status}
+          {getStatusLabel(order.status)}
         </span>
       </div>
 
