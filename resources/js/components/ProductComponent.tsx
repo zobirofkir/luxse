@@ -37,8 +37,8 @@ const ProductComponent = ({ products }) => {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
             <Link
-              key={product.id}
-              href={`/products/${product.id}`}
+              key={product.slug}
+              href={`/products/${product.slug}`}
               className="group"
             >
               <motion.div
