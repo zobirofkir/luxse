@@ -1,6 +1,7 @@
 import { getLayout } from '@/layouts/layout';
 import React from 'react';
 import { Head, useForm } from '@inertiajs/react';
+import { motion } from 'framer-motion'
 
 const ResetPasswordPage = ({ auth }) => {
   const Layout = getLayout(auth);
@@ -52,6 +53,19 @@ const ResetPasswordPage = ({ auth }) => {
           >
             Envoyer le lien de réinitialisation
           </button>
+
+          <motion.div className='flex flex-col w-full justify-center items-center md:gap-2 gap-1 overflow-hidden'>
+
+            <motion.a href='/login' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+              Vous avez déjà un compte !
+            </motion.a>
+
+            <motion.a href='/register' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+              Vous n'avez pas de compte ?
+            </motion.a>
+
+        </motion.div>
+
         </form>
       </section>
     </Layout>
