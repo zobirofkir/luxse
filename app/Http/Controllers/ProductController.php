@@ -26,11 +26,11 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)
-            ->with('category') // Make sure to eager-load the relation
+            ->with('category') 
             ->firstOrFail();
 
         return inertia('products/ProductDetailPage', [
-            'product' => (new ProductResource($product))->resolve(), // resolve() for raw array
+            'product' => (new ProductResource($product))->resolve(),
         ]);
     }
 
