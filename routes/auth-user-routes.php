@@ -32,6 +32,13 @@ Route::middleware(['auth'])->prefix('auth')->group(function () {
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
 
     /**
+     * Get Order Info
+     */
+    Route::get('/cards', function() {
+        return inertia('cards/CartPage');
+    })->name('cards.show');
+
+    /**
      * Post Order
      */
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
