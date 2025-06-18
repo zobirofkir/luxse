@@ -1,8 +1,16 @@
+import { getLayout } from '@/layouts/layout';
 import React from 'react'
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage = ({ auth }) => {
+
+  const Layout = getLayout(auth);
+
   return (
-    <div>ResetPasswordPage</div>
+    <Layout>
+      <section>
+        Reset Password Form
+      </section>
+    </Layout>
   )
 }
 
