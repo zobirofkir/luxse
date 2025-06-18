@@ -44,6 +44,32 @@ const ProductDetailPage = ({ product, auth }) => {
     }
   }, [product.id]);
 
+  const handleAddToCart = () => {
+    const cartKey = 'shopping_cart';
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+    const productInCartIndex = existingCart.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (productInCartIndex !== -1) {
+      // Update quantity if already in cart
+      existingCart[productInCartIndex].quantity += quantity;
+    } else {
+      // Add new product to cart
+      existingCart.push({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: quantity,
+        image: selectedImage,
+      });
+    }
+
+    localStorage.setItem(cartKey, JSON.stringify(existingCart));
+    alert('Product added to cart!');
+  };
+
   const Layout = getLayout(auth);
 
   return (
@@ -173,6 +199,7 @@ const ProductDetailPage = ({ product, auth }) => {
               <button
                 type="button"
                 className="mt-6 w-full bg-black text-white uppercase font-semibold py-4 rounded-lg tracking-wider hover:bg-white hover:text-black border-2 border-black transition-colors duration-300 shadow-lg"
+                onClick={handleAddToCart}
               >
                 Add to Cart
               </button>
