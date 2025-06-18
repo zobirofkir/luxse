@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Enums\OrderStatusEnum;
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -13,39 +12,34 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'Order';
-    protected static ?string $pluralModelLabel = 'Order';
+    protected static ?string $navigationLabel = 'Orders';
+    protected static ?string $pluralModelLabel = 'Orders';
     protected static ?string $modelLabel = 'Order';
-
-    protected static ?string $navigationGroup = 'Order';
+    protected static ?string $navigationGroup = 'Orders';
     protected static ?string $label = 'Order';
-    protected static ?string $pluralLabel = 'Order';
+    protected static ?string $pluralLabel = 'Orders';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Select::make('status')
-                    ->label('Statut de la commande')
+                    ->label('Order Status')
                     ->options([
-                        OrderStatusEnum::EN_ATTENTE->value => 'En attente',
-                        OrderStatusEnum::EN_COURS->value => 'En cours de traitement',
-                        OrderStatusEnum::EXPÉDIÉ->value => 'Expédié',
-                        OrderStatusEnum::LIVRÉ->value => 'Livré',
-                        OrderStatusEnum::ANNULÉ->value => 'Annulé',
+                        OrderStatusEnum::EN_ATTENTE->value => 'Pending',
+                        OrderStatusEnum::EN_COURS->value => 'Processing',
+                        OrderStatusEnum::EXPÉDIÉ->value => 'Shipped',
+                        OrderStatusEnum::LIVRÉ->value => 'Delivered',
+                        OrderStatusEnum::ANNULÉ->value => 'Cancelled',
                     ])
                     ->required()
                     ->native(false),
-
             ]);
     }
 
@@ -53,10 +47,49 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('user.name')
+                    ->label('Customer')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('user.phone')
+                    ->label('Phone Number')
+                    ->sortable()
+                    ->searchable(),
+
+
                 TextColumn::make('products.title')
+                    ->label('Products')
+                    ->formatStateUsing(function ($state, $record) {
+                        return $record->products->pluck('title')->implode(', ');
+                    })
+                    ->wrap()
+                    ->limit(50),
+
+                    TextColumn::make('status')
+                        ->label('Status')
+                        ->badge()
+                        ->color(fn ($state): string => match ($state->value) {
+                            'en_attente' => 'gray',
+                            'en_cours' => 'blue',
+                            'expédié' => 'yellow',
+                            'livré' => 'green',
+                            'annulé' => 'red',
+                            default => 'gray',
+                        })
+                        ->formatStateUsing(fn ($state) => match ($state->value) {
+                            'en_attente' => 'Pending',
+                            'en_cours' => 'Processing',
+                            'expédié' => 'Shipped',
+                            'livré' => 'Delivered',
+                            'annulé' => 'Cancelled',
+                            default => $state->value,
+                        }),
+
+
             ])
             ->filters([
-                //
+                // Optional: Add filters here
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -71,7 +104,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // No relation managers needed
         ];
     }
 
