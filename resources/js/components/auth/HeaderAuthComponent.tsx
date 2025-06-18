@@ -6,6 +6,7 @@ import { Link, router } from '@inertiajs/react';
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +16,12 @@ const HeaderAuthComponent = () => {
     { name: 'Produits', href: '/products' },
     { name: 'Faq', href: '/faqs' },
   ];
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('shopping_cart') || '[]');
+    const totalQuantity = storedCart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+    setCartCount(totalQuantity);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,12 +49,13 @@ const HeaderAuthComponent = () => {
           <button 
             className="md:hidden focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-          <a href="/">
+          <Link href="/" className="flex items-center">
             <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full md:block hidden" />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
@@ -56,55 +64,82 @@ const HeaderAuthComponent = () => {
             <Link 
               key={item.name}
               href={item.href}
-              className="text-gray-700 hover:text-gray-600 transition-colors"
+              className="text-gray-700 hover:text-gray-600 transition-colors font-medium"
             >
               {item.name}
             </Link>
           ))}
         </nav>
 
-        {/* Profile Dropdown */}
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={() => setDropdownOpen((prev) => !prev)}
-            className="focus:outline-none transition-all duration-200 hover:scale-105"
+        {/* Right Section: Cart Icon + Profile Dropdown */}
+        <div className="flex items-center space-x-6">
+          {/* Cart Icon */}
+          <Link
+            href="/auth/carts"
+            className="relative group"
+            aria-label="Shopping cart"
+            title="View cart"
           >
-            <img
-              src="https://i.pravatar.cc/40?img=13"
-              alt="Profile"
-              className="w-10 h-10 rounded-full border border-gray-300"
-            />
-          </button>
+            <ShoppingCart className="w-7 h-7 text-gray-700 group-hover:text-gray-900 transition-colors" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                {cartCount}
+              </span>
+            )}
+          </Link>
 
-          <div
-            className={`absolute right-0 mt-3 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-300 origin-top transform ${
-              dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-            }`}
-          >
-            <ul className="py-2 text-sm text-gray-700">
-              <li>
-                <Link href='/auth/profile'>
-                  <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
-                    <User className="w-4 h-4 mr-2 text-gray-500" />
-                    Profile
+          {/* Profile Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              className="focus:outline-none transition-all duration-200 hover:scale-105"
+              aria-haspopup="true"
+              aria-expanded={dropdownOpen}
+              aria-label="User menu"
+            >
+              <img
+                src="https://i.pravatar.cc/40?img=13"
+                alt="Profile"
+                className="w-10 h-10 rounded-full border border-gray-300"
+              />
+            </button>
+
+            <div
+              className={`absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-300 origin-top transform ${
+                dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+              }`}
+              role="menu"
+            >
+              <ul className="py-2 text-sm text-gray-700">
+                <li>
+                  <Link href='/auth/profile' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                      <User className="w-4 h-4 mr-2 text-gray-500" />
+                      Profile
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/auth/orders' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                      <ShoppingCart className="w-4 h-4 mr-2 text-gray-500" />
+                      Orders
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <button 
+                    className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors"
+                    onClick={handleLogout}
+                    role="menuitem"
+                    tabIndex={dropdownOpen ? 0 : -1}
+                  >
+                    <LogOut className="w-4 h-4 mr-2 text-gray-500" />
+                    Logout
                   </button>
-                </Link>
-              </li>
-              <li>
-                <Link href='/auth/orders'>
-                  <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
-                    <ShoppingCart className="w-4 h-4 mr-2 text-gray-500" />
-                    Orders
-                  </button>
-                </Link>
-              </li>
-              <li>
-                <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors" onClick={handleLogout}>
-                  <LogOut className="w-4 h-4 mr-2 text-gray-500" />
-                  Logout
-                </button>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

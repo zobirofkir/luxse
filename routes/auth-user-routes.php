@@ -34,7 +34,7 @@ Route::middleware(['auth'])->prefix('auth')->group(function () {
     /**
      * Get Order Info
      */
-    Route::get('/cards', function() {
+    Route::get('/carts', function() {
         return inertia('cards/CartPage');
     })->name('cards.show');
 
