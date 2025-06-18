@@ -5,11 +5,22 @@ import { useState, useEffect } from 'react';
 const CartPage = ({ auth }) => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const Layout = getLayout(auth);
 
+  const safeJSONParse = (str) => {
+    try {
+      return JSON.parse(str);
+    } catch {
+      return null;
+    }
+  };
+
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('shopping_cart')) || [];
+    const storedCartRaw = localStorage.getItem('shopping_cart');
+    const storedCart = safeJSONParse(storedCartRaw) ?? [];
     setCart(storedCart);
 
     const total = storedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -23,6 +34,50 @@ const CartPage = ({ auth }) => {
 
     const updatedTotal = updatedCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     setTotalPrice(updatedTotal);
+  };
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    setError(null);
+
+    if (cart.length === 0) {
+      setError('Your cart is empty.');
+      setLoading(false);
+      return;
+    }
+
+    const productsPayload = cart.map(item => ({
+      id: item.id,
+      quantity: item.quantity,
+    }));
+
+    try {
+      const response = await fetch('/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({ products: productsPayload }),
+        credentials: 'same-origin',
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to place order.');
+      }
+
+      setCart([]);
+      setTotalPrice(0);
+      localStorage.removeItem('shopping_cart');
+
+      window.location.href = '/orders';
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -68,11 +123,18 @@ const CartPage = ({ auth }) => {
                 <span>Total:</span>
                 <span>{totalPrice} MAD</span>
               </div>
+
+              {error && (
+                <p className="mt-2 text-red-600 font-semibold">{error}</p>
+              )}
+
               <button
-                className="mt-6 w-full bg-black text-white py-3 rounded-lg text-center hover:bg-gray-900 transition"
-                onClick={() => alert('Checkout logic coming soon!')}
+                className={`mt-6 w-full bg-black text-white py-3 rounded-lg text-center hover:bg-gray-900 transition
+                  ${loading ? 'opacity-60 cursor-not-allowed' : ''}`}
+                onClick={handleCheckout}
+                disabled={loading}
               >
-                Proceed to Checkout
+                {loading ? 'Processing...' : 'Proceed to Checkout'}
               </button>
             </div>
           </>

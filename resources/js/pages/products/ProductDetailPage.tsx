@@ -46,17 +46,26 @@ const ProductDetailPage = ({ product, auth }) => {
 
   const handleAddToCart = () => {
     const cartKey = 'shopping_cart';
-    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+    const existingCartRaw = localStorage.getItem(cartKey);
+
+    let existingCart = [];
+    try {
+      existingCart = existingCartRaw ? JSON.parse(existingCartRaw) : [];
+      if (!Array.isArray(existingCart)) {
+        existingCart = [];
+      }
+    } catch (error) {
+      existingCart = [];
+    }
 
     const productInCartIndex = existingCart.findIndex(
       (item) => item.id === product.id
     );
 
     if (productInCartIndex !== -1) {
-      // Update quantity if already in cart
       existingCart[productInCartIndex].quantity += quantity;
     } else {
-      // Add new product to cart
       existingCart.push({
         id: product.id,
         title: product.title,
