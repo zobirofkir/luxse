@@ -72,7 +72,7 @@ const CartPage = ({ auth }) => {
       setTotalPrice(0);
       localStorage.removeItem('shopping_cart');
 
-      window.location.href = '/orders';
+      window.location.href = '/auth/orders';
 
     } catch (err) {
       setError(err.message);
