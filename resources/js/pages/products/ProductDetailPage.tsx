@@ -77,6 +77,7 @@ const ProductDetailPage = ({ product, auth }) => {
 
     localStorage.setItem(cartKey, JSON.stringify(existingCart));
     alert('Product added to cart!');
+    window.location.reload();
   };
 
   const Layout = getLayout(auth);
