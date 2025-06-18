@@ -63,21 +63,21 @@ const Layout = getLayout(auth)
         <motion.form
           initial="hidden"
           animate="visible"
-          className="max-w-md w-full bg-black bg-opacity-90 p-10 rounded-lg shadow-lg"
+          className="max-w-md w-full bg-gray-100 bg-opacity-90 p-10 rounded-lg shadow-lg"
           onSubmit={handleSubmit}
         >
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="text-3xl font-extrabold mb-8 text-white text-center tracking-wide"
+            className="text-3xl font-extrabold mb-8 text-black text-center tracking-wide"
           >
             Créer un compte
           </motion.h2>
 
           {/* Nom complet */}
           <motion.div custom={1} variants={inputVariants} className="mb-6">
-            <label htmlFor="name" className="block mb-2 text-white font-semibold">
+            <label htmlFor="name" className="block mb-2 text-black font-semibold">
               Nom complet
             </label>
             <input
@@ -92,7 +92,7 @@ const Layout = getLayout(auth)
 
           {/* Email */}
           <motion.div custom={2} variants={inputVariants} className="mb-6">
-            <label htmlFor="email" className="block mb-2 text-white font-semibold">
+            <label htmlFor="email" className="block mb-2 text-black font-semibold">
               Adresse e-mail
             </label>
             <input
@@ -107,7 +107,7 @@ const Layout = getLayout(auth)
 
             {/* Phone */}
           <motion.div custom={2} variants={inputVariants} className="mb-6">
-            <label htmlFor="phone" className="block mb-2 text-white font-semibold">
+            <label htmlFor="phone" className="block mb-2 text-black font-semibold">
               Phone
             </label>
             <input
@@ -123,7 +123,7 @@ const Layout = getLayout(auth)
 
           {/* Mot de passe */}
           <motion.div custom={3} variants={inputVariants} className="mb-6">
-            <label htmlFor="password" className="block mb-2 text-white font-semibold">
+            <label htmlFor="password" className="block mb-2 text-black font-semibold">
               Mot de passe
             </label>
             <input
@@ -138,7 +138,7 @@ const Layout = getLayout(auth)
 
           {/* Confirmation */}
           <motion.div custom={4} variants={inputVariants} className="mb-8">
-            <label htmlFor="password_confirmation" className="block mb-2 text-white font-semibold">
+            <label htmlFor="password_confirmation" className="block mb-2 text-black font-semibold">
               Retaper le mot de passe
             </label>
             <input
