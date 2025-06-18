@@ -105,6 +105,22 @@ const Layout = getLayout(auth)
             {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
           </motion.div>
 
+            {/* Phone */}
+          <motion.div custom={2} variants={inputVariants} className="mb-6">
+            <label htmlFor="phone" className="block mb-2 text-white font-semibold">
+              Phone
+            </label>
+            <input
+              id="phone"
+              type="phone"
+              value={data.phone}
+              onChange={(e) => setData('phone', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
+            />
+            {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
+          </motion.div>
+
+
           {/* Mot de passe */}
           <motion.div custom={3} variants={inputVariants} className="mb-6">
             <label htmlFor="password" className="block mb-2 text-white font-semibold">
