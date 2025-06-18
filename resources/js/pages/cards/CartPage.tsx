@@ -52,10 +52,11 @@ const CartPage = ({ auth }) => {
     }));
 
     try {
-      const response = await fetch('/orders', {
+      const response = await fetch('/auth/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json', 
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
         body: JSON.stringify({ products: productsPayload }),
