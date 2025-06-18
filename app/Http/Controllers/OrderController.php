@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -25,13 +25,9 @@ class OrderController extends Controller
     /**
      * Store a new order
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        $validated = $request->validate([
-            'products' => 'required|array',
-            'products.*.id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer|min:1',
-        ]);
+        $validated = $request->validated();
 
         $totalPrice = 0;
 
