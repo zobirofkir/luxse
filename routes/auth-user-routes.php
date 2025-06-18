@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,18 @@ Route::middleware(['auth'])->prefix('auth')->group(function () {
         return inertia('orders/OrderPage');
     });
     
+    /**
+     * Get Orders
+     */
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+    /**
+     * Get Order Info
+     */
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
+    /**
+     * Post Order
+     */
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 });
