@@ -48,7 +48,7 @@ const OrderCardComponent = ({ order }) => {
           {new Date(order.created_at).toLocaleDateString()}
         </span>
         <span className="font-bold text-blue-600">
-          Total: ${order.total_price.toFixed(2)}
+          Total: ${order.total_price ? Number(order.total_price).toFixed(2) : '0.00'}
         </span>
       </div>
     </motion.div>
