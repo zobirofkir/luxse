@@ -141,6 +141,18 @@ const LoginPage = ({ auth }) => {
           >
             {processing ? 'Connexion...' : 'Connexion'}
           </motion.button>
+
+          <motion.div className='flex flex-col w-full justify-center items-center md:gap-2 gap-1 overflow-hidden'>
+
+            <motion.p className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+              Mot de passe oublié !
+            </motion.p>
+
+            <motion.p className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+              Vous n'avez pas de compte ?
+            </motion.p>
+
+          </motion.div>
         </motion.form>
       </section>
     </Layout>
