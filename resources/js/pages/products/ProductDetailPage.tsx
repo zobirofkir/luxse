@@ -50,8 +50,9 @@ const ProductDetailPage = ({ product, auth }) => {
     <Layout>
       <section className="max-w-7xl mx-auto p-6 sm:p-10 bg-white text-gray-900 min-h-screen flex flex-col">
         <Head title={product.title} />
+
         <div className="flex flex-col md:flex-row gap-12 md:gap-20">
-          {/* Images Gallery */}
+          {/* Image Gallery */}
           <div className="flex-1 flex flex-col">
             <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-300">
               {selectedImage ? (
@@ -96,15 +97,36 @@ const ProductDetailPage = ({ product, auth }) => {
 
           {/* Product Details */}
           <div className="flex-1 flex flex-col">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight uppercase mb-6 font-serif">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight uppercase mb-4 font-serif">
               {product.title}
             </h1>
 
-            <p className="text-3xl font-semibold text-gray-800 mb-8">{product.price} MAD</p>
-
-            <p className="text-lg leading-relaxed mb-10 border-b border-gray-300 pb-8 font-light">
-              {product.description}
+            <p className="text-sm text-gray-500 uppercase mb-2">
+              Category: <span className="font-medium">{product.category?.name}</span>
             </p>
+
+            <p className="text-3xl font-semibold text-gray-800 mb-4">{product.price} MAD</p>
+
+            <p className="text-lg leading-relaxed mb-6 text-gray-700">{product.description}</p>
+
+            <div className="grid grid-cols-2 gap-6 text-sm text-gray-700 mb-8">
+              <div>
+                <p className="font-semibold">Material:</p>
+                <p>{product.material ?? 'N/A'}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Size:</p>
+                <p>{product.size ?? 'N/A'}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Status:</p>
+                <p>{product.status}</p>
+              </div>
+              <div>
+                <p className="font-semibold">Stock:</p>
+                <p>{product.stock > 0 ? `${product.stock} items` : 'Out of stock'}</p>
+              </div>
+            </div>
 
             <div className="mb-10 p-6 bg-gray-50 border border-gray-200 rounded-xl shadow-sm">
               <h2 className="text-2xl font-semibold uppercase tracking-wide mb-4 border-l-4 border-black pl-3">
