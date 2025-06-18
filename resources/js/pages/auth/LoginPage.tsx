@@ -148,9 +148,9 @@ const LoginPage = ({ auth }) => {
               Mot de passe oublié !
             </motion.p>
 
-            <motion.p className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+            <motion.a href='/register' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
               Vous n'avez pas de compte ?
-            </motion.p>
+            </motion.a>
 
           </motion.div>
         </motion.form>
