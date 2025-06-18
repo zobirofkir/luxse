@@ -1,5 +1,6 @@
 import OrderCardComponent from '@/components/cards/OrderCardComponent';
 import { getLayout } from '@/layouts/layout';
+import { Head } from '@inertiajs/react';
 import React from 'react';
 
 const OrderPage = ({ orders, auth }) => {
@@ -9,6 +10,7 @@ const OrderPage = ({ orders, auth }) => {
   return (
     <Layout>
       <div className="p-4 max-w-3xl mx-auto">
+        <Head title='Orders'/>
         <h1 className="text-2xl font-bold mb-6">Vos commandes</h1>
         {orders.length ? (
           orders.map((order) => <OrderCardComponent key={order.id} order={order} />)

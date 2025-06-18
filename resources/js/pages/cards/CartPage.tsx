@@ -83,7 +83,7 @@ const CartPage = ({ auth }) => {
 
   return (
     <Layout>
-      <Head title="Your Cart" />
+      <Head title="Cart" />
       <section className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
         <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
 
