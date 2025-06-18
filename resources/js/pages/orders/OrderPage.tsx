@@ -9,11 +9,11 @@ const OrderPage = ({ orders, auth }) => {
   return (
     <Layout>
       <div className="p-4 max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Your Orders</h1>
+        <h1 className="text-2xl font-bold mb-6">Vos commandes</h1>
         {orders.length ? (
           orders.map((order) => <OrderCardComponent key={order.id} order={order} />)
         ) : (
-          <p className="text-gray-500">You have no orders yet.</p>
+          <p className="text-gray-500">Vous n'avez pas encore de commandes.</p>
         )}
       </div>
     </Layout>
