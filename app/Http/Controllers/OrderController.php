@@ -75,7 +75,7 @@ class OrderController extends Controller
     {
         $order = Order::with('products')->where('user_id', Auth::id())->findOrFail($id);
 
-        return Inertia::render('orders/OrderDetailPage', [
+        return Inertia::render('orders/OrderPage', [
             'order' => $order
         ]);
     }
