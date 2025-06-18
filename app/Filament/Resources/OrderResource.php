@@ -2,13 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\OrderStatusEnum;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -31,7 +34,18 @@ class OrderResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('status')
+                    ->label('Statut de la commande')
+                    ->options([
+                        OrderStatusEnum::EN_ATTENTE->value => 'En attente',
+                        OrderStatusEnum::EN_COURS->value => 'En cours de traitement',
+                        OrderStatusEnum::EXPÉDIÉ->value => 'Expédié',
+                        OrderStatusEnum::LIVRÉ->value => 'Livré',
+                        OrderStatusEnum::ANNULÉ->value => 'Annulé',
+                    ])
+                    ->required()
+                    ->native(false),
+
             ]);
     }
 
@@ -39,7 +53,7 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('products.title')
             ])
             ->filters([
                 //
