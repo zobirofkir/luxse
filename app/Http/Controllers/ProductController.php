@@ -21,12 +21,17 @@ class ProductController extends Controller
     /**
      * Product detail page
      *
-     * @param $id
+     * @param $slug
      */
-    public function show($id) 
+    public function show($slug)
     {
+        $product = Product::where('slug', $slug)
+            ->with('category') // Make sure to eager-load the relation
+            ->firstOrFail();
+
         return inertia('products/ProductDetailPage', [
-            'id' => $id
+            'product' => (new ProductResource($product))->resolve(), // resolve() for raw array
         ]);
     }
+
 }
