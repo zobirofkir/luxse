@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Helper function to translate order status
+/**
+ * 
+ * Helper function to translate order status
+ * @returns 
+ */
 const getStatusLabel = (status) => {
   switch (status) {
     case 'pending':
@@ -19,7 +23,11 @@ const getStatusLabel = (status) => {
   }
 };
 
-// Helper function to determine status color classes
+/**
+ * 
+ * Helper function to determine status color classes
+ * @returns 
+ */
 const getStatusClasses = (status) => {
   switch (status) {
     case 'pending':
