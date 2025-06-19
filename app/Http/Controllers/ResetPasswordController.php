@@ -16,6 +16,9 @@ class ResetPasswordController extends Controller
         return inertia("reset-password/ResetPasswordPage");
     }
 
+    /**
+     * Send Reset Email Link
+     */
     public function sendResetLinkEmail(ResetPasswordRequest $request)
     {
         $request->validated();
