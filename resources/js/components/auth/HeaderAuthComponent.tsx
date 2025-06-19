@@ -2,13 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Menu, X, ShoppingCart, ShoppingBag } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
 import { Link, router, usePage } from '@inertiajs/react';
+import useHeaderAuth from '@/hooks/useHeaderAuth';
 
 const HeaderAuthComponent = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const {
+    dropdownOpen,
+    setDropdownOpen,
+    mobileMenuOpen,
+    setMobileMenuOpen,
+    cartCount,
+    dropdownRef,
+    mobileMenuRef,
+    handleLogout,
+  } = useHeaderAuth();
 
   const navItems = [
     { name: 'Accueil', href: '/' },
@@ -16,30 +22,6 @@ const HeaderAuthComponent = () => {
     { name: 'Produits', href: '/products' },
     { name: 'Faq', href: '/faqs' },
   ];
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('shopping_cart') || '[]');
-    const totalQuantity = storedCart.reduce((sum: number, item: any) => sum + item.quantity, 0);
-    setCartCount(totalQuantity);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
-      }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setMobileMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleLogout = (e: React.MouseEvent) => {
-    e.preventDefault();
-    router.visit('/logout');
-  };
 
   const { auth } = usePage().props;
   const avatarUrl = auth.user?.avatar_url;
