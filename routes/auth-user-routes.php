@@ -12,8 +12,12 @@ Route::middleware(['auth'])->prefix('auth')->group(function () {
     /**
      * Profile Route
      */
-    Route::resource('profile', ProfileController::class);
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
+    /**
+     * Store Profile
+     */
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     /**
      * Order Route
      */

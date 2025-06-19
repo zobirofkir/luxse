@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     /**
-     * Affiche les données du profil de l'utilisateur connecté
+     * Affiche le profil de l'utilisateur connecté
      */
     public function index(Request $request)
     {
@@ -21,7 +21,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Met à jour le profil de l'utilisateur connecté
+     * Met à jour le profil
      */
     public function update(Request $request)
     {
