@@ -10,4 +10,5 @@ return [
     App\Providers\ProductServiceProvider::class,
     App\Providers\ProfileServiceProvider::class,
     App\Providers\ResetPasswordServiceProvider::class,
+    App\Providers\WelcomeServiceProvider::class,
 ];
