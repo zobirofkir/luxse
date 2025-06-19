@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { User, LogOut, Menu, X, ShoppingCart } from 'lucide-react';
+import { User, LogOut, Menu, X, ShoppingCart, ShoppingBag } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
 import { Link, router, usePage } from '@inertiajs/react';
 
@@ -83,7 +83,6 @@ const HeaderAuthComponent = () => {
             aria-label="Shopping cart"
             title="View cart"
           >
-            <ShoppingCart className="w-7 h-7 text-gray-700 group-hover:text-gray-900 transition-colors" />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
                 {cartCount}
@@ -123,13 +122,23 @@ const HeaderAuthComponent = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href='/auth/orders' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
+                  <Link href='/auth/carts' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
                     <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
                       <ShoppingCart className="w-4 h-4 mr-2 text-gray-500" />
+                      Cart
+                    </button>
+                  </Link>
+                </li>
+
+                <li>
+                  <Link href='/auth/orders' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
+                      <ShoppingBag className="w-4 h-4 mr-2 text-gray-500" />
                       Orders
                     </button>
                   </Link>
                 </li>
+
                 <li>
                   <button 
                     className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors"
