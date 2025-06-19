@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\CategoryService;
 use Illuminate\Support\ServiceProvider;
 
 class CategoryServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('CategoryService', CategoryService::class);
     }
 
     /**
