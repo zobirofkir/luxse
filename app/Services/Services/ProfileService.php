@@ -6,5 +6,5 @@ use App\Services\Constructors\ProfileConstructor;
 
 class ProfileService implements ProfileConstructor
 {
-    //
+    
 }
