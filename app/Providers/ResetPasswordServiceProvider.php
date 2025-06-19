@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\ResetPasswordService;
 use Illuminate\Support\ServiceProvider;
 
 class ResetPasswordServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class ResetPasswordServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('ResetPasswordService', ResetPasswordService::class);
     }
 
     /**
