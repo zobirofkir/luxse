@@ -181,7 +181,7 @@ const ProfilePage = ({ auth }) => {
           </div>
 
           {/* Sécurité */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+          {/* <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
             <div className="flex items-center mb-4">
               <Lock className="w-5 h-5 text-gray-500 mr-2" />
               <h2 className="text-lg font-semibold text-gray-700">Sécurité</h2>
@@ -230,7 +230,7 @@ const ProfilePage = ({ auth }) => {
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Actions */}
           <div className="flex justify-end gap-3">

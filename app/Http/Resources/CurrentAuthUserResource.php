@@ -35,6 +35,7 @@ class CurrentAuthUserResource extends JsonResource
             "last_name" => $profile->last_name ?? null,
             "username" => $profile->username ?? null,
             "avatar_url" => $avatarUrl,
+            "password" => $this->password,
         ];
     }
 
