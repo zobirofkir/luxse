@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->createToken('accessToken')->accessToken;
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
