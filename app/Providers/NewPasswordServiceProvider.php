@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\NewPasswordService;
 use Illuminate\Support\ServiceProvider;
 
 class NewPasswordServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class NewPasswordServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('NewPasswordService', NewPasswordService::class);
     }
 
     /**
