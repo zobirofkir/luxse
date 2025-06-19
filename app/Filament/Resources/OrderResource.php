@@ -40,7 +40,7 @@ class OrderResource extends Resource
                     ])
                     ->required()
                     ->native(false),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
