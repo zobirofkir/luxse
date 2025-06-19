@@ -2,69 +2,21 @@ import AuthLayout from '@/layouts/auth/auth-layout';
 import { Head, useForm } from '@inertiajs/react';
 import React, { useRef, useState, useEffect } from 'react';
 import { User, Lock, Settings, Camera } from 'lucide-react';
+import useProfileForm from '@/hooks/useProfileForm';
 
 const ProfilePage = ({ auth }) => {
-  const fileInputRef = useRef(null);
-
-  const { data, setData, post, processing, errors, reset } = useForm({
-    first_name: auth.data.first_name || '',
-    last_name: auth.data.last_name || '',
-    email: auth.data.email || '',
-    username: auth.data.username || '',
-    phone: auth.data.phone || '',
-    avatar_url: auth.data.avatar_url || '',
-    current_password: '',
-    new_password: '',
-    new_password_confirmation: '',
-    avatar_file: null, 
-  });
-
-  const [preview, setPreview] = useState(data.avatar_url || '');
-
-  useEffect(() => {
-    if (data.avatar_file) {
-      const objectUrl = URL.createObjectURL(data.avatar_file);
-      setPreview(objectUrl);
-
-      return () => URL.revokeObjectURL(objectUrl);
-    } else {
-      setPreview(data.avatar_url || '');
-    }
-  }, [data.avatar_file]);
-
-  function handleChooseAvatar() {
-    fileInputRef.current?.click();
-  }
-
-  function handleAvatarChange(e) {
-    if (e.target.files && e.target.files[0]) {
-      setData('avatar_file', e.target.files[0]);
-    }
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const formData = new FormData();
-
-    for (const key in data) {
-      if (key === 'avatar_file' && data.avatar_file) {
-        formData.append('avatar_file', data.avatar_file);
-      } else if (key !== 'avatar_file') {
-        formData.append(key, data[key]);
-      }
-    }
-
-    post(route('profile.update'), {
-      data: formData,
-      onSuccess: () => reset('current_password', 'new_password', 'new_password_confirmation', 'avatar_file'),
-      preserveScroll: true,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    window.location.reload();
-  }
+    const {
+    data,
+    setData,
+    processing,
+    errors,
+    reset,
+    fileInputRef,
+    preview,
+    handleChooseAvatar,
+    handleAvatarChange,
+    handleSubmit,
+  } = useProfileForm(auth.data);
 
   return (
     <AuthLayout>
