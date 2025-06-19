@@ -76,20 +76,6 @@ const HeaderAuthComponent = () => {
 
         {/* Right Section: Cart Icon + Profile Dropdown */}
         <div className="flex items-center space-x-6">
-          {/* Cart Icon */}
-          <Link
-            href="/auth/carts"
-            className="relative group"
-            aria-label="Shopping cart"
-            title="View cart"
-          >
-            {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                {cartCount}
-              </span>
-            )}
-          </Link>
-
           {/* Profile Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
@@ -115,6 +101,21 @@ const HeaderAuthComponent = () => {
               )}
             </button>
 
+            {/* Cart Icon */}
+            <Link
+              href="/auth/carts"
+              className="relative group"
+              aria-label="Shopping cart"
+              title="View cart"
+            >
+              {cartCount > 0 && (
+                <span className="absolute -bottom-0 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
+
             <div
               className={`absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 transition-all duration-300 origin-top transform ${
                 dropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
@@ -130,12 +131,27 @@ const HeaderAuthComponent = () => {
                     </button>
                   </Link>
                 </li>
-                <li>
-                  <Link href='/auth/carts' role="menuitem" tabIndex={dropdownOpen ? 0 : -1}>
-                    <button className="w-full flex items-center px-4 py-2 hover:bg-gray-100 transition-colors">
-                      <ShoppingCart className="w-4 h-4 mr-2 text-gray-500" />
-                      Cart
-                    </button>
+                
+                <li role="none" className="relative">
+                  <Link
+                    href="/auth/carts"
+                    role="menuitem"
+                    tabIndex={dropdownOpen ? 0 : -1}
+                    className="w-full flex items-center px-4 py-2 hover:bg-gray-100 focus:bg-gray-200 rounded-md transition-colors"
+                    aria-label="View cart"
+                    title="View cart"
+                  >
+                    <ShoppingCart className="w-5 h-5 mr-3 text-gray-600" aria-hidden="true" />
+                    <span className="flex-grow text-gray-800 font-medium">Cart</span>
+
+                    {cartCount > 0 && (
+                      <span
+                        className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-semibold leading-none text-white bg-red-600 rounded-full animate-pulse"
+                        aria-live="polite"
+                      >
+                        {cartCount}
+                      </span>
+                    )}
                   </Link>
                 </li>
 
