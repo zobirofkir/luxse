@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\WelcomeService;
 use Illuminate\Support\ServiceProvider;
 
 class WelcomeServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class WelcomeServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind("WelcomeService", WelcomeService::class);
     }
 
     /**
