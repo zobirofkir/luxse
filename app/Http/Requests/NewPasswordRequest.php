@@ -27,4 +27,22 @@ class NewPasswordRequest extends FormRequest
             'password' => 'required|min:8|confirmed',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'token.required' => 'Le jeton de réinitialisation est requis.',
+            'email.required' => 'L’adresse e-mail est obligatoire.',
+            'email.email' => 'L’adresse e-mail doit être valide.',
+            'email.exists' => 'Aucun compte n’est associé à cette adresse e-mail.',
+            'password.required' => 'Le mot de passe est obligatoire.',
+            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
+            'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
+        ];
+    }
 }

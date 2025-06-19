@@ -25,4 +25,18 @@ class ResetPasswordRequest extends FormRequest
             'email' => 'required|email|exists:users,email',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'L’adresse e-mail est obligatoire.',
+            'email.email' => 'L’adresse e-mail doit être une adresse valide.',
+            'email.exists' => 'Aucun compte n’est associé à cette adresse e-mail.',
+        ];
+    }
 }
