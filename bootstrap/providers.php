@@ -9,4 +9,5 @@ return [
     App\Providers\OrderServiceProvider::class,
     App\Providers\ProductServiceProvider::class,
     App\Providers\ProfileServiceProvider::class,
+    App\Providers\ResetPasswordServiceProvider::class,
 ];
