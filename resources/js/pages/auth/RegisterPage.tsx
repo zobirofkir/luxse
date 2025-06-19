@@ -117,7 +117,7 @@ const Layout = getLayout(auth)
               onChange={(e) => setData('phone', e.target.value)}
               className="w-full px-4 py-3 rounded-md bg-white text-black"
             />
-            {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
+            {errors.phone && <div className="text-red-500 text-sm mt-1">{errors.phone}</div>}
           </motion.div>
 
 
