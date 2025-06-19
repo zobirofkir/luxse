@@ -16,44 +16,37 @@ const ProfilePage = ({ auth }) => {
     current_password: '',
     new_password: '',
     new_password_confirmation: '',
-    avatar_file: null, // fichier image pour upload
+    avatar_file: null, 
   });
 
-  // State local pour prévisualisation image sélectionnée
   const [preview, setPreview] = useState(data.avatar_url || '');
 
-  // Mise à jour preview dès que avatar_file change
   useEffect(() => {
     if (data.avatar_file) {
       const objectUrl = URL.createObjectURL(data.avatar_file);
       setPreview(objectUrl);
 
-      // Libérer mémoire
       return () => URL.revokeObjectURL(objectUrl);
     } else {
       setPreview(data.avatar_url || '');
     }
   }, [data.avatar_file]);
 
-  // Ouvrir le sélecteur de fichier
   function handleChooseAvatar() {
     fileInputRef.current?.click();
   }
 
-  // Gérer le changement de fichier
   function handleAvatarChange(e) {
     if (e.target.files && e.target.files[0]) {
       setData('avatar_file', e.target.files[0]);
     }
   }
 
-  // Soumission du formulaire avec FormData (pour upload fichier)
   function handleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData();
 
-    // Ajouter tous les champs
     for (const key in data) {
       if (key === 'avatar_file' && data.avatar_file) {
         formData.append('avatar_file', data.avatar_file);
@@ -70,6 +63,7 @@ const ProfilePage = ({ auth }) => {
         'Content-Type': 'multipart/form-data',
       },
     });
+    window.location.reload();
   }
 
   return (
