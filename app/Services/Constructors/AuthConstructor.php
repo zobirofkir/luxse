@@ -20,12 +20,12 @@ interface AuthConstructor
     /**
      * Login Form
      */
-    public function loginForm(LoginRequest $request);
+    public function loginForm();
 
     /**
      * Login User
      */
-    public function login();
+    public function login(LoginRequest $request);
 
     /**
      * Logout Auth User
