@@ -1,10 +1,11 @@
 import { getLayout } from '@/layouts/layout';
 import React from 'react';
-import { Head, useForm } from '@inertiajs/react';
-import { motion } from 'framer-motion'
+import { Head, useForm, usePage } from '@inertiajs/react';
+import { motion } from 'framer-motion';
 
 const ResetPasswordPage = ({ auth }) => {
   const Layout = getLayout(auth);
+  const { flash } = usePage().props;
 
   const { data, setData, post, processing, errors } = useForm({
     email: '',
@@ -26,6 +27,12 @@ const ResetPasswordPage = ({ auth }) => {
           <h2 className="text-2xl font-bold mb-6 text-center">
             Mot de passe oublié
           </h2>
+
+          {flash.status && (
+            <div className="mb-4 text-green-600 text-sm text-center font-medium">
+              {flash.status}
+            </div>
+          )}
 
           {/* Email Input */}
           <div className="mb-4">
@@ -55,17 +62,13 @@ const ResetPasswordPage = ({ auth }) => {
           </button>
 
           <motion.div className='flex flex-col w-full justify-center items-center md:gap-2 gap-1 overflow-hidden'>
-
             <motion.a href='/login' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
               Vous avez déjà un compte !
             </motion.a>
-
             <motion.a href='/register' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
               Vous n'avez pas de compte ?
             </motion.a>
-
-        </motion.div>
-
+          </motion.div>
         </form>
       </section>
     </Layout>
