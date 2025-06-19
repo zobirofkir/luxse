@@ -6,6 +6,7 @@ use App\Filament\Widgets\CategoryChart;
 use App\Filament\Widgets\OverviewWidget;
 use App\Filament\Widgets\ProductChart;
 use App\Filament\Widgets\UsersTable;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -21,6 +22,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\Facades\Gate;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->authGuard('web')
             ->colors([
                 'primary' => Color::Zinc,
             ])
@@ -43,7 +46,7 @@ class AdminPanelProvider extends PanelProvider
                 OverviewWidget::class,
                 CategoryChart::class,
                 ProductChart::class,
-                UsersTable::class
+                UsersTable::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -58,6 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                EnsureUserIsAdmin::class,
             ]);
     }
 }
