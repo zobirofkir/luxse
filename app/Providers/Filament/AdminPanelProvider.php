@@ -2,7 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\Overview\CategoryChart;
 use App\Filament\Widgets\OverviewWidget;
+use App\Filament\Widgets\ProductChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -38,7 +40,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                OverviewWidget::class
+                OverviewWidget::class,
+                CategoryChart::class,
+                ProductChart::class
             ])
             ->middleware([
                 EncryptCookies::class,
