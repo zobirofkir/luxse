@@ -66,12 +66,12 @@ const ProductComponent = ({ products }) => {
                   <p className="text-base sm:text-lg font-medium text-gray-800 text-xl">
                     {product.price} DH
                   </p>
-                  <button
-                    onClick={(e) => e.preventDefault()}
+                  <Link
+                    href={`/products/${product.slug}`}
                     className="mt-4 w-fit px-6 py-2 border border-black uppercase text-xs sm:text-sm font-semibold tracking-widest hover:bg-black hover:text-white transition-all duration-300"
                   >
                     Afficher le produit
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             </Link>
