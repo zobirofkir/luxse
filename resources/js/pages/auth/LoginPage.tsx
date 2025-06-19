@@ -144,7 +144,7 @@ const LoginPage = ({ auth }) => {
 
           <motion.div className='flex flex-col w-full justify-center items-center md:gap-2 gap-1 overflow-hidden'>
 
-            <motion.a href='/reset-password' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
+            <motion.a href='/forgot-password' className='text-black md:mt-4 mt-2 whitespace-nowrap'>
               Mot de passe oublié !
             </motion.a>
 
