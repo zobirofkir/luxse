@@ -17,7 +17,12 @@ class CurrentAuthUserResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "email" => $this->email
+            "email" => $this->email,
+            "phone" => $this->profile->phone ?? null,
+            "first_name" => $this->profile->first_name ?? null,
+            "last_name" => $this->profile->last_name ?? null,
+            "username" => $this->profile->username ?? null,
+            "avatar_url" => asset('storage/' . $this->profile->avatar_url ?? null),
         ];
     }
 }
