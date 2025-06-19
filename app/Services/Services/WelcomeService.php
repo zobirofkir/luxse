@@ -17,5 +17,4 @@ class WelcomeService implements WelcomeConstructor
             "products" => ProductResource::collection(Product::all())->resolve()
         ]);
     }
-
 }
