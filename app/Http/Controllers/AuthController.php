@@ -24,7 +24,7 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        return AuthFacade::register();
+        return AuthFacade::register($request);
     }
 
     /**
@@ -40,7 +40,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        return AuthFacade::login();
+        return AuthFacade::login($request);
     }
 
     /**
