@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Services\OrderService;
 use Illuminate\Support\ServiceProvider;
 
 class OrderServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class OrderServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind("OrderService", OrderService::class);
     }
 
     /**
