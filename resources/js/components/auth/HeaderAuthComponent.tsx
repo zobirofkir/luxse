@@ -99,11 +99,20 @@ const HeaderAuthComponent = () => {
               aria-expanded={dropdownOpen}
               aria-label="User menu"
             >
-              <img
-                src={avatarUrl}
-                alt="Profile"
-                className="w-10 h-10 rounded-full border border-gray-300"
-              />
+              {avatarUrl ? (
+                <img
+                  src={avatarUrl}
+                  alt="Profile"
+                  className="w-10 h-10 rounded-full border border-gray-300 object-cover"
+                />
+              ) : (
+                <div
+                  className="w-10 h-10 rounded-full border border-gray-300 bg-gray-500 flex items-center justify-center text-white font-semibold text-lg select-none"
+                  aria-label="User initials"
+                >
+                  {auth.data?.name ? auth.data.name.charAt(0).toUpperCase() : '?'}
+                </div>
+              )}
             </button>
 
             <div
