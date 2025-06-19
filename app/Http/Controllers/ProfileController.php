@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CurrentAuthUserResource;
-use App\Services\Facades\ProductFacade;
+use App\Services\Facades\ProfileFacade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        return ProductFacade::index($request);
+        return ProfileFacade::index($request);
     }
 
     /**
@@ -24,7 +24,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        return ProductFacade::update($request);
+        return ProfileFacade::update($request);
     }
 
 }
