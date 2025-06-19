@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Mail\OrderPlacedMail;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -60,6 +62,8 @@ class OrderController extends Controller
          * Attach products
          */
         $order->products()->attach($productData);
+
+        Mail::to('zobirofkir19@gmail.com')->send(new OrderPlacedMail($order));
 
         return redirect()->route('orders.index')->with('success', 'Order placed successfully!');
     }
