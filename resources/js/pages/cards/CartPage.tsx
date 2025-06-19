@@ -41,7 +41,7 @@ const CartPage = ({ auth }) => {
     setError(null);
 
     if (cart.length === 0) {
-      setError('Your cart is empty.');
+      setError('Votre panier est vide.');
       setLoading(false);
       return;
     }
@@ -56,7 +56,7 @@ const CartPage = ({ auth }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json', 
+          'Accept': 'application/json',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         },
         body: JSON.stringify({ products: productsPayload }),
@@ -65,7 +65,7 @@ const CartPage = ({ auth }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to place order.');
+        throw new Error(errorData.message || "Échec de la commande.");
       }
 
       setCart([]);
@@ -83,12 +83,12 @@ const CartPage = ({ auth }) => {
 
   return (
     <Layout>
-      <Head title="Cart" />
+      <Head title="Panier" />
       <section className="max-w-5xl mx-auto py-10 px-4 sm:px-6">
-        <h1 className="text-4xl font-bold mb-8">Shopping Cart</h1>
+        <h1 className="text-4xl font-bold mb-8">Panier</h1>
 
         {cart.length === 0 ? (
-          <p className="text-gray-600 text-lg">Your cart is empty.</p>
+          <p className="text-gray-600 text-lg">Votre panier est vide.</p>
         ) : (
           <>
             <div className="space-y-6">
@@ -105,7 +105,7 @@ const CartPage = ({ auth }) => {
                     />
                     <div>
                       <h2 className="text-xl font-semibold">{item.title}</h2>
-                      <p className="text-gray-600">Quantity: {item.quantity}</p>
+                      <p className="text-gray-600">Quantité : {item.quantity}</p>
                       <p className="text-gray-800 font-bold">{item.price} MAD</p>
                     </div>
                   </div>
@@ -113,7 +113,7 @@ const CartPage = ({ auth }) => {
                     onClick={() => handleRemove(item.id)}
                     className="text-red-600 hover:underline"
                   >
-                    Remove
+                    Supprimer
                   </button>
                 </div>
               ))}
@@ -121,7 +121,7 @@ const CartPage = ({ auth }) => {
 
             <div className="mt-8 p-6 border rounded-lg shadow bg-gray-50 text-lg">
               <div className="flex justify-between font-semibold">
-                <span>Total:</span>
+                <span>Total :</span>
                 <span>{totalPrice} MAD</span>
               </div>
 
@@ -135,7 +135,7 @@ const CartPage = ({ auth }) => {
                 onClick={handleCheckout}
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Proceed to Checkout'}
+                {loading ? 'Traitement en cours...' : 'Passer à la caisse'}
               </button>
             </div>
           </>
