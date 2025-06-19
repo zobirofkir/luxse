@@ -16,6 +16,16 @@ class CurrentAuthUserResource extends JsonResource
     {
         $profile = $this->profile;
 
+        $avatar = $profile->avatar_url ?? null;
+
+        if ($avatar && (str_starts_with($avatar, 'http://') || str_starts_with($avatar, 'https://'))) {
+            $avatarUrl = $avatar;
+        } elseif ($avatar) {
+            $avatarUrl = asset('storage/' . $avatar);
+        } else {
+            $avatarUrl = asset('images/default-avatar.png');
+        }
+
         return [
             "id" => $this->id,
             "name" => $this->name,
@@ -24,9 +34,7 @@ class CurrentAuthUserResource extends JsonResource
             "first_name" => $profile->first_name ?? null,
             "last_name" => $profile->last_name ?? null,
             "username" => $profile->username ?? null,
-            "avatar_url" => $profile && $profile->avatar_url
-                ? asset('storage/' . $profile->avatar_url)
-                : asset('images/default-avatar.png'), 
+            "avatar_url" => $avatarUrl,
         ];
     }
 
