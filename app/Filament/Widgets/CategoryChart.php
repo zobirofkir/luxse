@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Widgets\Overview;
+namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
 use App\Models\Category;
