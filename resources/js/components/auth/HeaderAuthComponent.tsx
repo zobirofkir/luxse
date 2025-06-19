@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Menu, X, ShoppingCart } from 'lucide-react';
 import Logo from '@/assets/logo/logo.jpg';
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 
 const HeaderAuthComponent = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -40,6 +40,9 @@ const HeaderAuthComponent = () => {
     e.preventDefault();
     router.visit('/logout');
   };
+
+  const { auth } = usePage().props;
+  const avatarUrl = auth.user?.avatar_url;
 
   return (
     <header className="w-full bg-white border-b border-gray-200 shadow-sm relative z-50">
@@ -98,7 +101,7 @@ const HeaderAuthComponent = () => {
               aria-label="User menu"
             >
               <img
-                src="https://i.pravatar.cc/40?img=13"
+                src={avatarUrl}
                 alt="Profile"
                 className="w-10 h-10 rounded-full border border-gray-300"
               />

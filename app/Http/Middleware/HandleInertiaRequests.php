@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\CurrentAuthUserResource;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -50,7 +51,9 @@ class HandleInertiaRequests extends Middleware
             ],
 
             'auth' => [
-                'user' => $request->user(),
+                'user' => $request->user()
+                    ? CurrentAuthUserResource::make($request->user()->load('profile'))->resolve()
+                    : null,
             ],
 
             'ziggy' => fn (): array => [
