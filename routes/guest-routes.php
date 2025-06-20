@@ -42,6 +42,4 @@ Route::get('/category/{slug}', [ProductController::class, 'categoryProductBySlug
 /**
  * Contact Page Route
  */
-Route::get('/contacts', function () {
-    return inertia('contacts/ContactPage');
-})->name('contacts');
+Route::resource('/contacts', )
