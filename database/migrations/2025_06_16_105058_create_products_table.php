@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('stock')->default(0); 
             $table->string('material')->nullable(); 
             $table->string('size')->nullable(); 
-            $table->string('image')->nullable(); 
+            $table->longText('image')->nullable(); 
             $table->enum('status', ['active', 'inactive'])->default('active'); 
             $table->timestamps();
         });
