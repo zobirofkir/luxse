@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from '@inertiajs/react';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { LanguageContext } from '@/contexts/LanguageContext';
+import { contactTranslation } from '@/translation/contactTranslation';
 
 const ContactComponent = () => {
+  const { language } = useContext(LanguageContext);
+  const t = contactTranslation[language];
+
   const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     message: '',
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     post('/contacts', {
@@ -20,23 +25,28 @@ const ContactComponent = () => {
   };
 
   return (
-    <section className="bg-white text-black py-20 px-6 sm:px-10 max-w-7xl mx-auto">
-      {/* Titre */}
+    <section
+      className={`bg-white text-black py-20 px-6 sm:px-10 max-w-7xl mx-auto ${
+        language === 'ar' ? 'text-right' : 'text-left'
+      }`}
+      dir={language === 'ar' ? 'rtl' : 'ltr'}
+    >
+      {/* Title */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-16">
         <div className="flex items-center gap-4">
           <div className="w-1 h-12 bg-rose-500 rounded-full"></div>
           <motion.h2
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: language === 'ar' ? 30 : -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="text-4xl font-extrabold uppercase tracking-widest text-gray-800"
           >
-            Contactez-Nous
+            {t.title}
           </motion.h2>
         </div>
       </div>
 
-      {/* Carte Google */}
+      {/* Google Map */}
       <div className="mb-12 rounded-3xl overflow-hidden shadow-md border border-gray-200">
         <iframe
           title="Google Map"
@@ -48,22 +58,22 @@ const ContactComponent = () => {
         ></iframe>
       </div>
 
-      {/* Informations de contact */}
+      {/* Contact Info */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-14">
         {[
           {
             icon: <FiPhone className="h-8 w-8 text-black" />,
-            label: '+212 6 12 34 56 78',
+            label: t.phoneLabel,
             href: 'tel:+212612345678',
           },
           {
             icon: <FaWhatsapp className="h-8 w-8 text-green-600" />,
-            label: '+212 6 12 34 56 78',
+            label: t.whatsappLabel,
             href: 'https://wa.me/212612345678',
           },
           {
             icon: <FiMail className="h-8 w-8 text-black" />,
-            label: 'contact@example.com',
+            label: t.emailLabel,
             href: 'mailto:contact@example.com',
           },
         ].map((item, i) => (
@@ -83,7 +93,7 @@ const ContactComponent = () => {
         ))}
       </div>
 
-      {/* Formulaire de contact */}
+      {/* Contact Form */}
       <motion.form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-6"
@@ -93,14 +103,14 @@ const ContactComponent = () => {
       >
         <div>
           <label htmlFor="name" className="block mb-2 font-medium">
-            Nom
+            {t.form.nameLabel}
           </label>
           <input
             type="text"
             id="name"
             value={data.name}
             onChange={(e) => setData('name', e.target.value)}
-            placeholder="Votre nom"
+            placeholder={t.form.namePlaceholder}
             className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
           />
           {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -108,14 +118,14 @@ const ContactComponent = () => {
 
         <div>
           <label htmlFor="email" className="block mb-2 font-medium">
-            Email
+            {t.form.emailLabel}
           </label>
           <input
             type="email"
             id="email"
             value={data.email}
             onChange={(e) => setData('email', e.target.value)}
-            placeholder="Votre email"
+            placeholder={t.form.emailPlaceholder}
             className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -123,14 +133,14 @@ const ContactComponent = () => {
 
         <div>
           <label htmlFor="message" className="block mb-2 font-medium">
-            Message
+            {t.form.messageLabel}
           </label>
           <textarea
             id="message"
             rows={4}
             value={data.message}
             onChange={(e) => setData('message', e.target.value)}
-            placeholder="Votre message"
+            placeholder={t.form.messagePlaceholder}
             className="w-full border border-gray-300 rounded-md px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-black"
           ></textarea>
           {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
@@ -141,7 +151,7 @@ const ContactComponent = () => {
           disabled={processing}
           className="w-full sm:w-1/2 mx-auto bg-black text-white py-3 rounded-md font-semibold hover:bg-gray-800 transition"
         >
-          {processing ? 'Envoi en cours...' : 'Envoyer'}
+          {processing ? t.form.submit.sending : t.form.submit.send}
         </button>
       </motion.form>
     </section>
