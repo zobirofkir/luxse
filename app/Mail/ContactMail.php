@@ -21,6 +21,6 @@ class ContactMail extends Mailable
     {
         return $this->subject('New Contact Message')
                     ->to('zobirofkir19@gmail.com')
-                    ->view('emails.contact-message');
+                    ->view('emails.contacts.contact-message');
     }
 }
