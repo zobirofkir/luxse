@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Mail\ContactMail;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -21,7 +23,9 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
-        Contact::create($request->validated());
+        $validated = $request->validated();
+        Contact::create($validated);
+        Mail::send(new ContactMail($validated));
         return redirect()->back()->with('success', 'Message envoyé avec succès.');
     }
 }
