@@ -1,50 +1,31 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sophie Martin",
-    text: "Les bijoux sont absolument magnifiques, la qualité est impeccable et le service client très professionnel.",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
-  },
-  {
-    id: 2,
-    name: "Antoine Dupont",
-    text: "Une expérience d'achat luxueuse, je recommande vivement cette boutique pour tous les amateurs de bijoux uniques.",
-    image: "https://randomuser.me/api/portraits/men/43.jpg",
-  },
-  {
-    id: 3,
-    name: "Claire Bernard",
-    text: "Le service personnalisé et la rapidité de livraison m’ont vraiment impressionnée. Bijoux exquis !",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    id: 4,
-    name: "Julien Lefèvre",
-    text: "Des pièces élégantes et intemporelles, parfaites pour offrir ou se faire plaisir. Bravo !",
-    image: "https://randomuser.me/api/portraits/men/31.jpg",
-  },
-];
+import React, { useContext } from 'react'
+import { motion } from 'framer-motion'
+import { testimonialTranslation } from '@/translation/testimonialTranslation'
+import { LanguageContext } from '@/contexts/LanguageContext'
 
 const TestimonialComponent = () => {
-  const repeatedTestimonials = [...testimonials, ...testimonials]; 
+  const { language } = useContext(LanguageContext)
+  const t = testimonialTranslation[language] || testimonialTranslation['en'] // prevent "t is undefined"
+  const repeatedTestimonials = [...t.testimonials, ...t.testimonials]
 
   return (
-    <section className="bg-white text-black pb-10 px-4 sm:px-10 mt-10">
+    <section
+      className={`bg-white text-black pb-10 px-4 sm:px-10 mt-10 ${
+        language === 'ar' ? 'text-right' : 'text-left'
+      }`}
+      dir={language === 'ar' ? 'rtl' : 'ltr'}
+    >
       <div className="container mx-auto">
-        {/* Titre section avec flesh gauche + sous-titre à droite */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-16">
           <div className="flex items-center gap-4">
-            <div className="w-1 h-12 bg-rose-500 rounded-full"></div>
+            <div className="w-1 h-12 bg-rose-500 rounded-full" />
             <motion.h2
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className="text-4xl font-extrabold uppercase tracking-widest text-gray-800"
             >
-              Témoignages Clients
+              {t.sectionTitle}
             </motion.h2>
           </div>
           <motion.p
@@ -53,26 +34,25 @@ const TestimonialComponent = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-gray-500 text-xl italic mt-4 sm:mt-0 text-center sm:text-right"
           >
-            Ce que nos clients disent de nous...
+            {t.sectionSubtitle}
           </motion.p>
         </div>
 
-        {/* Scroll horizontal automatique */}
         <div
           className="relative overflow-x-hidden"
           onMouseEnter={(e) => {
-            e.currentTarget.querySelector(".scroll-container").style.animationPlayState =
-              "paused";
+            const container = e.currentTarget.querySelector('.scroll-container') as HTMLElement
+            if (container) container.style.animationPlayState = 'paused'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.querySelector(".scroll-container").style.animationPlayState =
-              "running";
+            const container = e.currentTarget.querySelector('.scroll-container') as HTMLElement
+            if (container) container.style.animationPlayState = 'running'
           }}
         >
           <div
             className="scroll-container flex gap-6 w-max no-scrollbar"
             style={{
-              animation: "scroll 60s linear infinite",
+              animation: 'scroll 60s linear infinite',
             }}
           >
             {repeatedTestimonials.map((testimonial, idx) => (
@@ -93,17 +73,14 @@ const TestimonialComponent = () => {
                 <p className="italic text-base mb-4 whitespace-normal break-words">
                   "{testimonial.text}"
                 </p>
-                <h3 className="font-semibold uppercase tracking-wide">
-                  {testimonial.name}
-                </h3>
+                <h3 className="font-semibold uppercase tracking-wide">{testimonial.name}</h3>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Animation CSS personnalisée */}
-      <style jsx>{`
+      <style>{`
         @keyframes scroll {
           0% {
             transform: translateX(0%);
@@ -117,7 +94,7 @@ const TestimonialComponent = () => {
         }
       `}</style>
     </section>
-  );
-};
+  )
+}
 
-export default TestimonialComponent;
+export default TestimonialComponent
