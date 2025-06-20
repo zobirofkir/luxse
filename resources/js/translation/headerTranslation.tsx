@@ -19,14 +19,4 @@ export const headerTranslation = {
     login: 'تسجيل الدخول',
     register: 'إنشاء حساب',
   },
-  en: {
-    home: 'Home',
-    about: 'About',
-    categories: 'Categories',
-    products: 'Products',
-    faq: 'FAQ',
-    contact: 'Contact',
-    login: 'Login',
-    register: 'Register',
-  },
 }
