@@ -1,14 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import LanguageSwitcher from './LanguageSwitcher'
 
-const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu }) => {
-  const [language, setLanguage] = useState('fr')
-
-  const toggleLanguage = () => {
-    setLanguage(prev => (prev === 'fr' ? 'ar' : 'fr'))
-  }
-
+const BurgerMenuButtonComponent = ({ menuOpen, toggleMenu, language, toggleLanguage }) => {
   const translations = {
     fr: {
       openMenu: 'Ouvrir le menu',

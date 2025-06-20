@@ -10,8 +10,24 @@ const HeaderComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showHeader, setShowHeader] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [language, setLanguage] = useState('fr') // default
+
+  // Load language from localStorage on first load
+  useEffect(() => {
+    const savedLang = localStorage.getItem('selectedLanguage')
+    if (savedLang === 'fr' || savedLang === 'ar') {
+      setLanguage(savedLang)
+    }
+  }, [])
+
+  // Save language to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('selectedLanguage', language)
+  }, [language])
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
+  const toggleLanguage = () =>
+    setLanguage((prev) => (prev === 'fr' ? 'ar' : 'fr'))
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +48,6 @@ const HeaderComponent = () => {
 
   return (
     <>
-      {/* Social Bar */}
       <SocialBarComponent />
       <hr className="border-t border-white/30 mx-auto max-w-7xl" />
 
@@ -48,13 +63,22 @@ const HeaderComponent = () => {
           >
             <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
               <LogoComponent />
-              <NavBarComponent />
-              <BurgerMenuButtonComponent menuOpen={menuOpen} toggleMenu={toggleMenu} />
+              <NavBarComponent language={language} />
+              <BurgerMenuButtonComponent
+                menuOpen={menuOpen}
+                toggleMenu={toggleMenu}
+                language={language}
+                toggleLanguage={toggleLanguage}
+              />
             </div>
 
             <AnimatePresence>
               {menuOpen && (
-                <SidebarComponent menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                <SidebarComponent
+                  menuOpen={menuOpen}
+                  setMenuOpen={setMenuOpen}
+                  language={language}
+                />
               )}
             </AnimatePresence>
           </motion.header>
