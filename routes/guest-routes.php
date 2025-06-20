@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +43,4 @@ Route::get('/category/{slug}', [ProductController::class, 'categoryProductBySlug
 /**
  * Contact Page Route
  */
-Route::resource('/contacts', )
+Route::resource('/contacts', ContactController::class);
