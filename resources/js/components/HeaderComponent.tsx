@@ -1,33 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import SocialBarComponent from './header/SocialBarComponent'
 import LogoComponent from './header/LogoComponent'
 import NavBarComponent from './header/NavBarComponent'
 import BurgerMenuButtonComponent from './header/BurgerMenuButtonComponent'
 import SidebarComponent from './header/SidebarComponent'
+import { LanguageContext } from '@/contexts/LanguageContext'
 
 const HeaderComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showHeader, setShowHeader] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
-  const [language, setLanguage] = useState('fr') // default
 
-  // Load language from localStorage on first load
-  useEffect(() => {
-    const savedLang = localStorage.getItem('selectedLanguage')
-    if (savedLang === 'fr' || savedLang === 'ar') {
-      setLanguage(savedLang)
-    }
-  }, [])
-
-  // Save language to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('selectedLanguage', language)
-  }, [language])
+  const { language, toggleLanguage } = useContext(LanguageContext)
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
-  const toggleLanguage = () =>
-    setLanguage((prev) => (prev === 'fr' ? 'ar' : 'fr'))
 
   useEffect(() => {
     const handleScroll = () => {

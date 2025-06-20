@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { aboutTranslation } from '@/translation/aboutTranslation'
 
 function Diamond() {
   const meshRef = useRef()
@@ -36,19 +37,20 @@ function Diamond() {
 }
 
 const AboutComponent = () => {
-  const [showMore, setShowMore] = useState(false)
+  const [language, setLanguage] = useState('fr')
 
-  /**
-   * French lorem description split for preview and full text
-   */
-  const shortDescription = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis.`
-  const fullDescription = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis. Proin viverra risus a eros volutpat tempor. In quis arcu et eros porta lobortis sit amet at magna. Nullam scelerisque, nisl sit amet dictum ultricies, nisl erat egestas erat, a gravida libero orci nec justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer cursus erat non purus pulvinar, ac posuere elit aliquam. Sed id magna a elit pretium tincidunt. Aliquam erat volutpat.
+  useEffect(() => {
+    const savedLang = localStorage.getItem('selectedLanguage')
+    if (savedLang === 'fr' || savedLang === 'ar') {
+      setLanguage(savedLang)
+    }
+  }, [])
 
-Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. Suspendisse potenti. Fusce vitae posuere nunc, sed porttitor sapien. Vivamus et velit ultricies, pretium metus id, facilisis lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis nec justo cursus, blandit metus a, blandit lectus.`
+  const t = aboutTranslation[language]
 
   return (
     <section className="relative text-black py-10 px-4 sm:px-6 md:px-10 overflow-hidden container mx-auto min-h-[700px] flex items-center justify-center">
-      {/* Diamond Background - hidden on small screens for clarity and perf */}
+      {/* Diamond Background */}
       <div className="absolute inset-0 z-0 pointer-events-none hidden sm:block">
         <Canvas
           camera={{ position: [0, 0, 6], fov: 50 }}
@@ -74,7 +76,7 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
           transition={{ duration: 1 }}
           className="text-4xl sm:text-5xl font-extrabold text-center uppercase tracking-widest"
         >
-          Maison du Diamant
+          {t.title}
         </motion.h2>
 
         {/* Intro Section */}
@@ -84,21 +86,20 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
             initial={{ x: -80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1.2 }}
-            className="space-y-6 text-center lg:text-left px-2 sm:px-0"
+            className={`space-y-6 text-center lg:text-left px-2 sm:px-0 ${
+              language === 'ar' ? 'font-sans text-right' : ''
+            }`}
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
           >
             <h3 className="text-3xl font-semibold uppercase text-black/90 text-center">
-              Élégance intemporelle
+              {t.subtitle}
             </h3>
-            <p className="text-lg leading-relaxed text-gray-700 text-center text-xl">
-              Depuis des générations, notre maison façonne des bijoux
-              d'exception mêlant tradition et modernité. Chaque diamant est
-              sélectionné avec la plus grande exigence.
-            </p>
-            <p className="text-lg leading-relaxed text-gray-700 text-center text-xl">
-              Nous croyons que chaque bijou doit raconter une histoire – votre
-              histoire – avec éclat et raffinement.
-            </p>
 
+            {t.paragraphs.map((para, idx) => (
+              <p key={idx} className="text-lg leading-relaxed text-gray-700 text-center text-xl">
+                {para}
+              </p>
+            ))}
           </motion.div>
 
           {/* Image */}
@@ -110,12 +111,11 @@ Curabitur fringilla diam sit amet nisl suscipit, at convallis neque malesuada. S
           >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTgS0GP1qnYpKH5WMfIMj4kZ5otFH7tpbFKw&s"
-              alt="Bijou de luxe"
+              alt={t.title}
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700"
             />
           </motion.div>
         </div>
-
       </div>
     </section>
   )
