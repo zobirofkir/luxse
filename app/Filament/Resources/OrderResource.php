@@ -52,6 +52,11 @@ class OrderResource extends Resource
                     ->sortable()
                     ->searchable(),
 
+                TextColumn::make('user.address')
+                    ->label('Address')
+                    ->sortable()
+                    ->searchable(),
+
                 TextColumn::make('user.phone')
                     ->label('Phone Number')
                     ->sortable()

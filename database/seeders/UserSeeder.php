@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             "name" => "Oudghiri",
             "email" => "oudghiri@gmail.com",
             "password" => "oudghiri123",
+            "address" => "Testing Address",
             'phone' => '0612345678'
         ]);
     }

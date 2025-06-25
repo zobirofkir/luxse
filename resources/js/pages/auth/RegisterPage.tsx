@@ -46,6 +46,8 @@ const Layout = getLayout(auth)
     email: '',
     password: '',
     password_confirmation: '',
+    address: '', // added address
+    phone: '',   // ensure phone is here as well
   })
 
 
@@ -105,8 +107,23 @@ const Layout = getLayout(auth)
             {errors.email && <div className="text-red-500 text-sm mt-1">{errors.email}</div>}
           </motion.div>
 
-            {/* Phone */}
-          <motion.div custom={2} variants={inputVariants} className="mb-6">
+          {/* Adresse */}
+          <motion.div custom={2.5} variants={inputVariants} className="mb-6">
+            <label htmlFor="address" className="block mb-2 text-black font-semibold">
+              Adresse
+            </label>
+            <input
+              id="address"
+              type="text"
+              value={data.address}
+              onChange={(e) => setData('address', e.target.value)}
+              className="w-full px-4 py-3 rounded-md bg-white text-black"
+            />
+            {errors.address && <div className="text-red-500 text-sm mt-1">{errors.address}</div>}
+          </motion.div>
+
+          {/* Phone */}
+          <motion.div custom={3} variants={inputVariants} className="mb-6">
             <label htmlFor="phone" className="block mb-2 text-black font-semibold">
               Phone
             </label>
@@ -120,9 +137,8 @@ const Layout = getLayout(auth)
             {errors.phone && <div className="text-red-500 text-sm mt-1">{errors.phone}</div>}
           </motion.div>
 
-
           {/* Mot de passe */}
-          <motion.div custom={3} variants={inputVariants} className="mb-6">
+          <motion.div custom={4} variants={inputVariants} className="mb-6">
             <label htmlFor="password" className="block mb-2 text-black font-semibold">
               Mot de passe
             </label>
@@ -137,7 +153,7 @@ const Layout = getLayout(auth)
           </motion.div>
 
           {/* Confirmation */}
-          <motion.div custom={4} variants={inputVariants} className="mb-8">
+          <motion.div custom={4.5} variants={inputVariants} className="mb-8">
             <label htmlFor="password_confirmation" className="block mb-2 text-black font-semibold">
               Retaper le mot de passe
             </label>
