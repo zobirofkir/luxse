@@ -3,7 +3,7 @@ export const contactTranslation = {
     title: "Contactez-Nous",
     phoneLabel: "+212 6 12 34 56 78",
     whatsappLabel: "+212 6 12 34 56 78",
-    emailLabel: "contact@example.com",
+    emailLabel: "contact@oudghiri.com",
     form: {
       nameLabel: "Nom",
       namePlaceholder: "Votre nom",
@@ -21,7 +21,7 @@ export const contactTranslation = {
     title: "اتصل بنا",
     phoneLabel: "+212 6 12 34 56 78",
     whatsappLabel: "+212 6 12 34 56 78",
-    emailLabel: "contact@example.com",
+    emailLabel: "contact@oudghiri.com",
     form: {
       nameLabel: "الاسم",
       namePlaceholder: "اسمك",
