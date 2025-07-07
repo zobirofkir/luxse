@@ -40,7 +40,7 @@ const FooterComponent = () => {
             <li>
               {t.emailLabel}{" "}
               <a
-                href="mailto:contact@diamanteclat.com"
+                href="mailto:contact@oudghiri.com"
                 className="underline hover:text-gray-300"
               >
                 {t.emailValue}

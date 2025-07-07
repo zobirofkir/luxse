@@ -53,7 +53,7 @@ class OrderResource extends Resource
                     ->searchable(),
 
                 TextColumn::make('user.address')
-                    ->label('Address')
+                    ->label('Customer')
                     ->sortable()
                     ->searchable(),
 
